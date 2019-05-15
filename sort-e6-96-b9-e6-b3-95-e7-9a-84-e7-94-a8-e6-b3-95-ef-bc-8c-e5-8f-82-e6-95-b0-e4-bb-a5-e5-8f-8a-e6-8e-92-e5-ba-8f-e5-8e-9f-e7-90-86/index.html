@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="CookyGG的个人博客">
 <meta property="og:description" content="sort() 方法用于对数组的元素进行排序,并返回数组。默认排序顺序是根据字符串Unicode码点。 语法：arrayObject.sort(sortby)；参数sortby可选。规定排序顺序。必须是函数。 注：如果调用该方法时没有使用参数，将按字母顺序对数组中的元素进行排序，说得更精确点，是按照字符编码的顺序进行排序。要实现这一点，首先应把数组的元素都转换成字符串（如有必要），以便进行比较。 如">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-14T02:56:48.757Z">
+<meta property="og:updated_time" content="2019-05-15T09:45:34.965Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sort()方法的用法，参数以及排序原理">
 <meta name="twitter:description" content="sort() 方法用于对数组的元素进行排序,并返回数组。默认排序顺序是根据字符串Unicode码点。 语法：arrayObject.sort(sortby)；参数sortby可选。规定排序顺序。必须是函数。 注：如果调用该方法时没有使用参数，将按字母顺序对数组中的元素进行排序，说得更精确点，是按照字符编码的顺序进行排序。要实现这一点，首先应把数组的元素都转换成字符串（如有必要），以便进行比较。 如">
@@ -103,7 +103,7 @@
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
       author: '博主'
@@ -330,6 +330,37 @@
             </span>
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
           
 
           
@@ -660,10 +691,19 @@ console.log(arr.sort(compare(&apos;age&apos;)))
       <div class="footer-inner">
         <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-snowflake-o"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Hao Pu</span>
 
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count"></span>
   
 </div>
 
@@ -672,11 +712,7 @@ console.log(arr.sort(compare(&apos;age&apos;)))
 
 
 
-  <span class="post-meta-divider">|</span>
 
-
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
 
 
 
@@ -743,6 +779,8 @@ console.log(arr.sort(compare(&apos;age&apos;)))
   
 
 
+  
+
 
 
 
@@ -781,6 +819,11 @@ console.log(arr.sort(compare(&apos;age&apos;)))
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
 

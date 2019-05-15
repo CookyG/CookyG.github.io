@@ -88,7 +88,7 @@
 <meta property="og:description" content="前言以前说起前端动画必须使用JS，而CSS3为我们带来transition和@keyframes，让我们可以以更简单（声明式代替命令式）和更高效的方式实现UI状态间的补间动画。本文为近期对Transition的学习总结，欢迎各位拍砖。 属性介绍首先先我们简单粗暴了解transition属性吧！ transition: &amp;lt;transition-property&amp;gt; &amp;lt;transiti">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/6/6/163d1857d92331ff?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
-<meta property="og:updated_time" content="2019-05-14T02:56:48.757Z">
+<meta property="og:updated_time" content="2019-05-15T09:45:34.965Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Transition就这么好玩">
 <meta name="twitter:description" content="前言以前说起前端动画必须使用JS，而CSS3为我们带来transition和@keyframes，让我们可以以更简单（声明式代替命令式）和更高效的方式实现UI状态间的补间动画。本文为近期对Transition的学习总结，欢迎各位拍砖。 属性介绍首先先我们简单粗暴了解transition属性吧！ transition: &amp;lt;transition-property&amp;gt; &amp;lt;transiti">
@@ -105,7 +105,7 @@
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
       author: '博主'
@@ -332,6 +332,37 @@
             </span>
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
           
 
           
@@ -734,10 +765,19 @@ getComputeStyle(), currentStyle()
       <div class="footer-inner">
         <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-snowflake-o"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Hao Pu</span>
 
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count"></span>
   
 </div>
 
@@ -746,11 +786,7 @@ getComputeStyle(), currentStyle()
 
 
 
-  <span class="post-meta-divider">|</span>
 
-
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
 
 
 
@@ -817,6 +853,8 @@ getComputeStyle(), currentStyle()
   
 
 
+  
+
 
 
 
@@ -855,6 +893,11 @@ getComputeStyle(), currentStyle()
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
 
