@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言以前说起前端动画必须使用JS，而CSS3为我们带来transition和@keyframes，让我们可以以更简单（声明式代替命令式）和更高效的方式实现UI状态间的补间动画。本文为近期对Transition的学习总结，欢迎各位拍砖。 属性介绍">
+<meta name="keywords" content="前端博客,JavaScript,html5,css3,Jquery,Vue,CookyG,CookyGG">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Transition就这么好玩">
+<meta property="og:url" content="https://cookyg.github.io/2018/06/06/35.html">
+<meta property="og:site_name" content="CookyGG的个人博客">
+<meta property="og:description" content="前言以前说起前端动画必须使用JS，而CSS3为我们带来transition和@keyframes，让我们可以以更简单（声明式代替命令式）和更高效的方式实现UI状态间的补间动画。本文为近期对Transition的学习总结，欢迎各位拍砖。 属性介绍">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-16T09:42:31.021Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Transition就这么好玩">
+<meta name="twitter:description" content="前言以前说起前端动画必须使用JS，而CSS3为我们带来transition和@keyframes，让我们可以以更简单（声明式代替命令式）和更高效的方式实现UI状态间的补间动画。本文为近期对Transition的学习总结，欢迎各位拍砖。 属性介绍">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://cookyg.github.io/2018/06/06/35.html">
+
+
+
+
+
+  <title>Transition就这么好玩 | CookyGG的个人博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CookyGG的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">实践发现真理~</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://cookyg.github.io/2018/06/06/35.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hao Pu">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CookyGG的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Transition就这么好玩</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-06T10:24:53+08:00">
+                2018-06-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/css/" itemprop="url" rel="index">
+                    <span itemprop="name">css</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <meta name="referrer" content="no-referrer">
+
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>以前说起前端动画必须使用JS，<a href="https://link.juejin.im/?target=https%3A%2F%2Fwww.cnblogs.com%2Ffsjohnhuang%2Fp%2Fmailto%3A%E8%80%8CCSS3%E4%B8%BA%E6%88%91%E4%BB%AC%E5%B8%A6%E6%9D%A5transition%E5%92%8C%40keyframes" target="_blank" rel="noopener">而CSS3为我们带来transition和@keyframes</a>，让我们可以以更简单（声明式代替命令式）和更高效的方式实现UI状态间的补间动画。本文为近期对Transition的学习总结，欢迎各位拍砖。</p>
+<h2 id="属性介绍"><a href="#属性介绍" class="headerlink" title="属性介绍"></a>属性介绍</h2><a id="more"></a>
+<p>首先先我们简单粗暴了解<code>transition</code>属性吧！</p>
+<pre><code>transition: &lt;transition-property&gt; &lt;transition-duration&gt; &lt;transition-timing-function&gt; &lt;transition-delay&gt;;
+
+/* 设置启用Transition效果的CSS属性
+ * 注意：仅会引发repaint或reflow的属性可启用Transition效果
+ *       [CSS_animated_properties](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animated_properties)
+ */
+&lt;transition-property&gt;: all | none | &lt;property&gt; [,&lt;property&gt;]*
+
+/* 设置过渡动画持续时间，单位为s或ms
+ */
+&lt;transition-duration&gt;: 0s | &lt;time&gt; [, &lt;time&gt;]*
+
+/* 设置过渡动画的缓动函数
+ * cubic-bezier的值从0到1
+ * [一个很好用的cubic-bezier配置工具](http://cubic-bezier.com)
+ */
+&lt;transition-timing-function&gt;: linear|ease|ease-in|ease-out|ease-in-out|cubic-bezier(n,n,n,n)
+
+/* 设置过渡动画的延时，单位为s或ms
+ */
+&lt;transition-delay&gt;: 0s | &lt;time&gt; [, &lt;time&gt;]
+</code></pre><p>另外我们可以一次性为多个CSS属性启动Transition效果</p>
+<pre><code>transition: width 1s ease .6s,
+            color .5s linear,
+            background 2s ease-in-out;
+</code></pre><h2 id="触发方式"><a href="#触发方式" class="headerlink" title="触发方式"></a>触发方式</h2><p>既然Transition是UI状态间的补间动画，那么有且仅有修改UI状态时才能让动画动起来。那么就有3种方式了：</p>
+<ol>
+<li>伪类.<code>:link</code>,<code>:visited</code>,<code>:hover</code>,<code>:active</code>和<code>:focus</code></li>
+<li>通过JS修改CSS属性值</li>
+<li>通过JS修改className值</li>
+</ol>
+<h2 id="TransitionEnd事件详解"><a href="#TransitionEnd事件详解" class="headerlink" title="TransitionEnd事件详解"></a>TransitionEnd事件详解</h2><p><a href="https://link.juejin.im/?target=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FEvents%2Ftransitionend" target="_blank" rel="noopener">TransitionEnd Event</a></p>
+<pre><code>el.addEventListener(&quot;transitionend&quot;
+  , e =&gt; 
+    {
+      const pseudoElement = e.pseudoElement // 触发动画的伪类
+          , propertyName = e.propertyName   // 发生动画的CSS属性
+          , elapsedTime = e.elapsedTime     // 动画的持续时间
+      // ..................
+    })
+</code></pre><p>注意：每个启用TransitionCSS属性的分别对应独立的<code>transitionend</code>事件</p>
+<pre><code>/* 触发3个transitionend事件 */
+transition: width 1s ease .6s,
+            color .5s linear,
+            background 2s ease-in-out;
+</code></pre><h2 id="Visibility也能transition？"><a href="#Visibility也能transition？" class="headerlink" title="Visibility也能transition？"></a>Visibility也能transition？</h2><p>在可启用Transition的CSS属性中，我们发现到一个很特别的CSS属性——<code>visibility</code>。<code>visibility</code>常与<code>display</code>相提并论的属性，它凭什么能启用Transition，而<code>display</code>不行呢？这个我真心不清楚，不过我们还是了解启用transition的<code>visibility</code>先吧！ <code>visibility</code>是离散值，0(<code>hidden</code>)表示隐藏，1(<code>visible</code>)表示完全显示，非0表示显示。那么<code>visibility</code>状态变化就存在两个方向的差异了：</p>
+<ol>
+<li>从<strong>隐藏</strong>到<strong>显示</strong>，由于非0就是显示，那么从值从0到1的过程中，实际上是从隐藏直接切换到显示的状态，因此并没有所谓的变化过程；</li>
+<li>从<strong>显示</strong>到<strong>隐藏</strong>，从1到0的过程中，存在一段时间保持在显示的状态，然后最后一瞬间切换到隐藏，因此效果上是变化延迟，依然没有变化过程。</li>
+</ol>
+<p>上述表明启用transition的<code>visibility</code>并没有补间动画的视觉效果，那么到底有什么作用呢？答案就是不影响/辅助其他CSS属性的补间动画。其中最明显的例子就是辅助<code>opacity</code>属性实现隐藏显示的补间动画。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br></pre></td><td class="code"><pre><span class="line">    &lt;style&gt;</span><br><span class="line">    .form-input&#123;</span><br><span class="line">        display: inline-flex;</span><br><span class="line">        line-height: 2;</span><br><span class="line">        border: solid 1px rgba(0,0,0,0.3);</span><br><span class="line">    &#125;</span><br><span class="line">    .form-input:hover&#123;</span><br><span class="line">            border: solid 1px rgba(0,0,0,0.4);</span><br><span class="line">    &#125;</span><br><span class="line">    .form-addon&#123;</span><br><span class="line">        font-style: normal;</span><br><span class="line">        color: #666;</span><br><span class="line">        background: #ddd;</span><br><span class="line">        padding-left: 10px;</span><br><span class="line">        padding-right: 10px;</span><br><span class="line">        border-right: solid 1px rgba(0,0,0,0.3);</span><br><span class="line">    &#125;</span><br><span class="line">    .form-addon-after&#123;</span><br><span class="line">        border-left: solid 1px rgba(0,0,0,0.3);</span><br><span class="line">        border-right: none 0;</span><br><span class="line">    &#125;</span><br><span class="line">    .form-control&#123;</span><br><span class="line">        border:none 0;</span><br><span class="line">        outline-color: transparent;</span><br><span class="line">        padding: 5px;</span><br><span class="line">        caret-color: #888;</span><br><span class="line">        font-size: 16px;</span><br><span class="line">    &#125;</span><br><span class="line">    .tips-host&#123;</span><br><span class="line">        position: relative;</span><br><span class="line">    &#125;</span><br><span class="line">    .tips&#123;</span><br><span class="line">        cursor: default;</span><br><span class="line">        z-index: 999;</span><br><span class="line">        position: absolute;</span><br><span class="line">        top: 120%;</span><br><span class="line">        font-size: 12px;</span><br><span class="line">        color: #444;</span><br><span class="line">        background: #ccc;</span><br><span class="line">        padding: .5em;</span><br><span class="line">        box-shadow: 2px 2px 10px #999;</span><br><span class="line">        transition: box-shadow .2s,</span><br><span class="line">                           opacity 1s,</span><br><span class="line">                           visibility .8s;</span><br><span class="line">        visibility: hidden;</span><br><span class="line">        opacity: 0;</span><br><span class="line">    &#125;</span><br><span class="line">    .tips:hover&#123;</span><br><span class="line">        box-shadow: 2px 2px 5px #999;</span><br><span class="line">    &#125;</span><br><span class="line">    .tips::before&#123;</span><br><span class="line">        content: &quot;&quot;;</span><br><span class="line">        border: solid 10px transparent;</span><br><span class="line">        border-bottom: solid 10px #ccc;</span><br><span class="line">        position:  absolute;</span><br><span class="line">        transform: translate(0, -100%);</span><br><span class="line">    &#125;</span><br><span class="line">    .form-control:focus + .tips&#123;</span><br><span class="line">        visibility: visible;</span><br><span class="line">        opacity: 1;</span><br><span class="line">    &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">    &lt;div class=&quot;form-input tips-host&quot; &gt;</span><br><span class="line">        &lt;i class=&quot;form-addon&quot;&gt;Amount&lt;/i&gt;</span><br><span class="line">        &lt;input class=&quot;form-control&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;tips&quot;&gt;</span><br><span class="line">            Starts with alphabet, then anything you would like.</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">![](https://user-gold-cdn.xitu.io/2018/6/6/163d1857d92331ff?imageView2/0/w/1280/h/960/format/webp/ignore-error/1) 当`opacity:0`时，需要元素隐藏了但实际上它仍然位于原来的位置，而且可以拦截和响应鼠标事件，当出现元素重叠时则会导致底层元素失效。而由于`visibility:hidden`时，元素不显示且不拦截鼠标事件，所以在补间动画的最后设置`visibility:hidden`为不俗的解决办法。</span><br><span class="line"></span><br><span class="line">`display:none`让transition失效的补救措施</span><br><span class="line">--------------------------------</span><br><span class="line"></span><br><span class="line">虽然修改`display`有可能会引发reflow，但它依然不能启用Transition，这点真心要问问委员会了。更让人疑惑的是，它不单不支持启用Transition，而且当设置`display:none`时其余CSS属性的Transition均失效。难到这是让元素脱离渲染树的后果？？</span><br><span class="line"></span><br><span class="line">    &lt;style&gt;</span><br><span class="line">    .box&#123;</span><br><span class="line">      display: none;</span><br><span class="line">      background: red;</span><br><span class="line">      height: 20px;</span><br><span class="line">    &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">    &lt;div class=&quot;box&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;button id=&quot;btn1&quot;&gt;Transition has no effect&lt;/button&gt;</span><br><span class="line">    &lt;button id=&quot;btn2&quot;&gt;Transition takes effect&lt;/button&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">    const box = document.querySelector(&quot;.box&quot;)</span><br><span class="line">        , btn1 = document.querySelector(&quot;#btn1&quot;)</span><br><span class="line">        , btn2 = document.querySelector(&quot;#btn2&quot;)</span><br><span class="line">    btn1.addEventListener(&quot;click&quot;, e =&gt; &#123;</span><br><span class="line">      box.style.display = &quot;block&quot;</span><br><span class="line">      box.style.background = &quot;blue&quot;</span><br><span class="line">    &#125;)</span><br><span class="line">    btn2.addEventListener(&quot;click&quot;, e =&gt; &#123;</span><br><span class="line">      box.style.display = &quot;block&quot;</span><br><span class="line">      box.offsetWidth              // 强制执行reflow</span><br><span class="line">      box.style.background = &quot;blue&quot;</span><br><span class="line">    &#125;)</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line"></span><br><span class="line">上面的代码，当我们点击btn1时背景色的transition失效，而点击btn2则生效，关键区别就是通过`box.offsetWidth`强制执行reflow，让元素先加入渲染树进行渲染，然后再修改背景色执行repaint。 那么我们可以得到的补救措施就是——强制执行reflow，下面的操作均可强制执行reflow(注意：会影响性能哦！)</span><br><span class="line"></span><br><span class="line">    offsetWidth, offsetHeight, offsetTop, offsetLeft</span><br><span class="line">    scrollWidth, scrollHeight, scrollTop, scrollLeft</span><br><span class="line">    clientWidth, clientHeight, clientTop, clientLeft</span><br><span class="line">    getComputeStyle(), currentStyle()</span><br><span class="line"></span><br><span class="line">总结</span><br><span class="line">--</span><br></pre></td></tr></table></figure></p>
+<p>尊重原创，转载自：<a href="https://www.cnblogs.com/fsjohnhuang/p/9143035.html" target="_blank" rel="noopener">www.cnblogs.com/fsjohnhuang… </a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/10/25.html" rel="next" title="ES5 部署Object.is">
+                <i class="fa fa-chevron-left"></i> ES5 部署Object.is
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/06/06.html" rel="prev" title="你需要了解的23种JavaScript设计模式">
+                你需要了解的23种JavaScript设计模式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Hao Pu</p>
+              <p class="site-description motion-element" itemprop="description">CookyGG个人站，主要涉及前端知识共享、技术学习等方面</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">41</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CookyG" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="379360444@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.alloyteam.com/nav/" title="Web前端导航" target="_blank">Web前端导航</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.chuangzaoshi.com/code" title="创造狮导航" target="_blank">创造狮导航</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.36zhen.com/t?id=3448" title="前端书籍资料" target="_blank">前端书籍资料</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://e.xitu.io/" title="掘金酱" target="_blank">掘金酱</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.v2ex.com/" title="V2EX" target="_blank">V2EX</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.v2ex.com/" title="印记中文" target="_blank">印记中文</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性介绍"><span class="nav-number">2.</span> <span class="nav-text">属性介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#触发方式"><span class="nav-number">3.</span> <span class="nav-text">触发方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TransitionEnd事件详解"><span class="nav-number">4.</span> <span class="nav-text">TransitionEnd事件详解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Visibility也能transition？"><span class="nav-number">5.</span> <span class="nav-text">Visibility也能transition？</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-snowflake-o"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hao Pu</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count"></span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

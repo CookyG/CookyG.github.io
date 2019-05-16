@@ -79,20 +79,18 @@
 
 
 
-<meta name="description" content="原文出处： SARAH DRASNER   译文出处：众成翻译    有一种很常见的情况：有两个非常相似的组件，他们的基本功能是一样的，但他们之间又存在着足够的差异性，此时的你就像是来到了一个分岔路口：我是把它拆分成两个不同的组件呢？还是保留为一个组件，然后通过props传值来创造差异性从而进行区分呢？ 两种解决方案都不够完美：如果拆分成两个组件，你就不得不冒着一旦功能变动就要在两个文件中更新代码">
+<meta name="description" content="原文出处： SARAH DRASNER   译文出处：众成翻译    有一种很常见的情况：有两个非常相似的组件，他们的基本功能是一样的，但他们之间又存在着足够的差异性，此时的你就像是来到了一个分岔路口：我是把它拆分成两个不同的组件呢？还是保留为一个组件，然后通过props传值来创造差异性从而进行区分呢？">
 <meta name="keywords" content="前端博客,JavaScript,html5,css3,Jquery,Vue,CookyG,CookyGG">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vue mixin">
 <meta property="og:url" content="https://cookyg.github.io/2019/01/17/vue-mixin.html">
 <meta property="og:site_name" content="CookyGG的个人博客">
-<meta property="og:description" content="原文出处： SARAH DRASNER   译文出处：众成翻译    有一种很常见的情况：有两个非常相似的组件，他们的基本功能是一样的，但他们之间又存在着足够的差异性，此时的你就像是来到了一个分岔路口：我是把它拆分成两个不同的组件呢？还是保留为一个组件，然后通过props传值来创造差异性从而进行区分呢？ 两种解决方案都不够完美：如果拆分成两个组件，你就不得不冒着一旦功能变动就要在两个文件中更新代码">
+<meta property="og:description" content="原文出处： SARAH DRASNER   译文出处：众成翻译    有一种很常见的情况：有两个非常相似的组件，他们的基本功能是一样的，但他们之间又存在着足够的差异性，此时的你就像是来到了一个分岔路口：我是把它拆分成两个不同的组件呢？还是保留为一个组件，然后通过props传值来创造差异性从而进行区分呢？">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://jbcdn2.b0.upaiyun.com/2017/07/df4bdb49356f53506124dbd7509a7195.jpg">
-<meta property="og:updated_time" content="2019-05-15T09:45:34.967Z">
+<meta property="og:updated_time" content="2019-05-16T09:47:28.261Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vue mixin">
-<meta name="twitter:description" content="原文出处： SARAH DRASNER   译文出处：众成翻译    有一种很常见的情况：有两个非常相似的组件，他们的基本功能是一样的，但他们之间又存在着足够的差异性，此时的你就像是来到了一个分岔路口：我是把它拆分成两个不同的组件呢？还是保留为一个组件，然后通过props传值来创造差异性从而进行区分呢？ 两种解决方案都不够完美：如果拆分成两个组件，你就不得不冒着一旦功能变动就要在两个文件中更新代码">
-<meta name="twitter:image" content="http://jbcdn2.b0.upaiyun.com/2017/07/df4bdb49356f53506124dbd7509a7195.jpg">
+<meta name="twitter:description" content="原文出处： SARAH DRASNER   译文出处：众成翻译    有一种很常见的情况：有两个非常相似的组件，他们的基本功能是一样的，但他们之间又存在着足够的差异性，此时的你就像是来到了一个分岔路口：我是把它拆分成两个不同的组件呢？还是保留为一个组件，然后通过props传值来创造差异性从而进行区分呢？">
 
 
 
@@ -380,297 +378,14 @@
       
 
       
-        <p>原文出处： <a href="https://css-tricks.com/using-mixins-vue-js/" target="_blank" rel="noopener">SARAH DRASNER</a>   译文出处：<a href="http://zcfy.cc/article/using-mixins-in-vue-js-css-tricks-3257.html" target="_blank" rel="noopener">众成翻译</a>   </p>
+        <meta name="referrer" content="no-referrer">
+
+<p>原文出处： <a href="https://css-tricks.com/using-mixins-vue-js/" target="_blank" rel="noopener">SARAH DRASNER</a>   译文出处：<a href="http://zcfy.cc/article/using-mixins-in-vue-js-css-tricks-3257.html" target="_blank" rel="noopener">众成翻译</a>   </p>
 <p>有一种很常见的情况：有两个非常相似的组件，他们的基本功能是一样的，但他们之间又存在着足够的差异性，此时的你就像是来到了一个分岔路口：我是把它拆分成两个不同的组件呢？还是保留为一个组件，然后通过props传值来创造差异性从而进行区分呢？</p>
+<a id="more"></a>
 <p>两种解决方案都不够完美：如果拆分成两个组件，你就不得不冒着一旦功能变动就要在两个文件中更新代码的风险，这违背了 DRY 原则。反之，太多的props传值会很快变得混乱不堪，从而迫使维护者（即便这个人是你）在使用组件的时候必须理解一大段的上下文，拖慢写码速度。</p>
 <p>使用Mixin。Vue 中的Mixin对编写函数式风格的代码很有用，因为函数式编程就是通过减少移动的部分让代码更好理解（引自 <a href="https://twitter.com/mfeathers/status/29581296216?lang=en" target="_blank" rel="noopener">Michael Feathers</a> ）。Mixin允许你封装一块在应用的其他组件中都可以使用的函数。如果使用姿势得当，他们不会改变函数作用域外部的任何东西，因此哪怕执行多次，只要是同样的输入你总是能得到一样的值，真的很强大！</p>
-<h3 id="基础实例"><a href="#基础实例" class="headerlink" title="基础实例"></a>基础实例</h3><p>我们有一对不同的组件，它们的作用是通过切换状态（Boolean类型）来展示或者隐藏模态框或提示框。这些提示框和模态框除了功能相似以外，没有其他共同点：它们看起来不一样，用法不一样，但是逻辑一样。</p>
-<p>JavaScript</p>
-<p>// 模态框 const Modal = { template: ‘#modal’, data() { return { isShowing: false } }, methods: { toggleShow() { this.isShowing = !this.isShowing; } }, components: { appChild: Child } } // 提示框 const Tooltip = { template: ‘#tooltip’, data() { return { isShowing: false } }, methods: { toggleShow() { this.isShowing = !this.isShowing; } }, components: { appChild: Child } }</p>
-<p>1</p>
-<p>2</p>
-<p>3</p>
-<p>4</p>
-<p>5</p>
-<p>6</p>
-<p>7</p>
-<p>8</p>
-<p>9</p>
-<p>10</p>
-<p>11</p>
-<p>12</p>
-<p>13</p>
-<p>14</p>
-<p>15</p>
-<p>16</p>
-<p>17</p>
-<p>18</p>
-<p>19</p>
-<p>20</p>
-<p>21</p>
-<p>22</p>
-<p>23</p>
-<p>24</p>
-<p>25</p>
-<p>26</p>
-<p>27</p>
-<p>28</p>
-<p>29</p>
-<p>30</p>
-<p>31</p>
-<p>32</p>
-<p>33</p>
-<p>34</p>
-<p>35</p>
-<p>// 模态框</p>
-<p>const  Modal  =  {</p>
-<p>template:  ‘#modal’,</p>
-<p>data()  {</p>
-<p>return  {</p>
-<p>isShowing:  false</p>
-<p>}</p>
-<p>},</p>
-<p>methods:  {</p>
-<p>toggleShow()  {</p>
-<p>this.isShowing  =  !this.isShowing;</p>
-<p>}</p>
-<p>},</p>
-<p>components:  {</p>
-<p>appChild:  Child</p>
-<p>}</p>
-<p>}</p>
-<p>// 提示框</p>
-<p>const  Tooltip  =  {</p>
-<p>template:  ‘#tooltip’,</p>
-<p>data()  {</p>
-<p>return  {</p>
-<p>isShowing:  false</p>
-<p>}</p>
-<p>},</p>
-<p>methods:  {</p>
-<p>toggleShow()  {</p>
-<p>this.isShowing  =  !this.isShowing;</p>
-<p>}</p>
-<p>},</p>
-<p>components:  {</p>
-<p>appChild:  Child</p>
-<p>}</p>
-<p>}</p>
-<p>我们可以在这里提取逻辑并创建可以被重用的项：</p>
-<p>JavaScript</p>
-<p>const toggle = { data() { return { isShowing: false } }, methods: { toggleShow() { this.isShowing = !this.isShowing; } } } const Modal = { template: ‘#modal’, mixins: [toggle], components: { appChild: Child } }; const Tooltip = { template: ‘#tooltip’, mixins: [toggle], components: { appChild: Child } };</p>
-<p>1</p>
-<p>2</p>
-<p>3</p>
-<p>4</p>
-<p>5</p>
-<p>6</p>
-<p>7</p>
-<p>8</p>
-<p>9</p>
-<p>10</p>
-<p>11</p>
-<p>12</p>
-<p>13</p>
-<p>14</p>
-<p>15</p>
-<p>16</p>
-<p>17</p>
-<p>18</p>
-<p>19</p>
-<p>20</p>
-<p>21</p>
-<p>22</p>
-<p>23</p>
-<p>24</p>
-<p>25</p>
-<p>26</p>
-<p>27</p>
-<p>28</p>
-<p>const  toggle  =  {</p>
-<p>data()  {</p>
-<p>return  {</p>
-<p>isShowing:  false</p>
-<p>}</p>
-<p>},</p>
-<p>methods:  {</p>
-<p>toggleShow()  {</p>
-<p>this.isShowing  =  !this.isShowing;</p>
-<p>}</p>
-<p>}</p>
-<p>}</p>
-<p>const  Modal  =  {</p>
-<p>template:  ‘#modal’,</p>
-<p>mixins:  [toggle],</p>
-<p>components:  {</p>
-<p>appChild:  Child</p>
-<p>}</p>
-<p>};</p>
-<p>const  Tooltip  =  {</p>
-<p>template:  ‘#tooltip’,</p>
-<p>mixins:  [toggle],</p>
-<p>components:  {</p>
-<p>appChild:  Child</p>
-<p>}</p>
-<p>};</p>
-<p>你可以点击这里，查看 Sarah Drasner(<a href="https://codepen.io/sdras" target="_blank" rel="noopener">@sdras</a>) 在<a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>上编写 <a href="https://codepen.io/sdras/pen/101a5d737b31591e5801c60b666013db/" target="_blank" rel="noopener">Mixin</a> 的例子</p>
-<p>为了更容易理解Mixin，这个例子故意编写得简单一些。真实应用中Mixin有如下的应用，但是它的作用也不仅限于此：获取视窗和组件的尺寸，采集特定的鼠标事件和图表的基本元素。Paul Pflugradt 有一个关于 <a href="https://github.com/paulpflug/vue-mixins" target="_blank" rel="noopener">Vue Mixins 的优秀项目</a>，值得一提的是它是用 coffeescript 编写的。</p>
-<h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><p>上面这个codepen的例子并没有告诉我们在一个真实的应用中如何使用Mixin，所以我们看看下面的这个。</p>
-<p>你可以按照你喜欢的任意方式设置你的目录结构，但为了结构规整我喜欢新建一个<code>mixin</code>目录。我们创建的这个文件含有<code>.js</code>扩展名（跟<code>.vue</code>相对，就像我们的其他文件），为了使用Mixin我们需要输出一个对象。</p>
-<p><img src="http://jbcdn2.b0.upaiyun.com/2017/07/df4bdb49356f53506124dbd7509a7195.jpg" alt="directory structure shows mixins in a folder in components directory"></p>
-<p>接着我们可以在Modal.vue使用这样的写法，来引入这个Mixin:</p>
-<p>JavaScript</p>
-<p>import Child from ‘./Child’ import { toggle } from ‘./mixins/toggle’ export default { name: ‘modal’, mixins: [toggle], components: { appChild: Child } }</p>
-<p>1</p>
-<p>2</p>
-<p>3</p>
-<p>4</p>
-<p>5</p>
-<p>6</p>
-<p>7</p>
-<p>8</p>
-<p>9</p>
-<p>10</p>
-<p>import Child  from  ‘./Child’</p>
-<p>import  {  toggle  }  from  ‘./mixins/toggle’</p>
-<p>export  default  {</p>
-<p>name:  ‘modal’,</p>
-<p>mixins:  [toggle],</p>
-<p>components:  {</p>
-<p>appChild:  Child</p>
-<p>}</p>
-<p>}</p>
-<p>即便我们使用的是一个对象而不是一个组件，生命周期函数对我们来说仍然是可用的，理解这点很重要。我们也可以这里使用<code>mounted()</code>钩子函数，它将被应用于组件的生命周期上。这种工作方式真的很灵活也很强大。</p>
-<h3 id="合并"><a href="#合并" class="headerlink" title="合并"></a>合并</h3><p>在下面的这个例子，我们可以看到，我们不仅仅是实现了自己想要的功能，并且Mixin中的生命周期的钩子也同样是可用的。因此，当我们在组件上应用Mixin的时候，有可能组件与Mixin中都定义了相同的生命周期钩子，这时候钩子的执行顺序的问题凸显了出来。默认Mixin上会首先被注册，组件上的接着注册，这样我们就可以在组件中按需要重写Mixin中的语句。<strong>组件拥有最终发言权。</strong>当发生冲突并且这个组件就不得不“决定”哪个胜出的时候，这一点就显得特别重要，否则，所有的东西都被放在一个数组当中执行，Mixin将要被先推入数组，其次才是组件。</p>
-<p>JavaScript</p>
-<p>//mixin const hi = { mounted() { console.log(‘hello from mixin!’) } } //vue instance or component new Vue({ el: ‘#app’, mixins: [hi], mounted() { console.log(‘hello from Vue instance!’) } }); //Output in console &gt; hello from mixin! &gt; hello from Vue instance!</p>
-<p>1</p>
-<p>2</p>
-<p>3</p>
-<p>4</p>
-<p>5</p>
-<p>6</p>
-<p>7</p>
-<p>8</p>
-<p>9</p>
-<p>10</p>
-<p>11</p>
-<p>12</p>
-<p>13</p>
-<p>14</p>
-<p>15</p>
-<p>16</p>
-<p>17</p>
-<p>18</p>
-<p>19</p>
-<p>//mixin</p>
-<p>const  hi  =  {</p>
-<p>mounted()  {</p>
-<p>console.log(‘hello from mixin!’)</p>
-<p>}</p>
-<p>}</p>
-<p>//vue instance or component</p>
-<p>new  Vue({</p>
-<p>el:  ‘#app’,</p>
-<p>mixins:  [hi],</p>
-<p>mounted()  {</p>
-<p>console.log(‘hello from Vue instance!’)</p>
-<p>}</p>
-<p>});</p>
-<p>//Output in console</p>
-<blockquote>
-<p> hello from mixin!</p>
-</blockquote>
-<blockquote>
-<p> hello from Vue instance!</p>
-</blockquote>
-<p>如果这两个冲突了，我们看看 Vue实例或组件是如何决定输赢的：</p>
-<p>JavaScript</p>
-<p>//mixin const hi = { methods: { sayHello: function() { console.log(‘hello from mixin!’) } }, mounted() { this.sayHello() } } //vue instance or component new Vue({ el: ‘#app’, mixins: [hi], methods: { sayHello: function() { console.log(‘hello from Vue instance!’) } }, mounted() { this.sayHello() } }) // Output in console &gt; hello from Vue instance! &gt; hello from Vue instance!</p>
-<p>1</p>
-<p>2</p>
-<p>3</p>
-<p>4</p>
-<p>5</p>
-<p>6</p>
-<p>7</p>
-<p>8</p>
-<p>9</p>
-<p>10</p>
-<p>11</p>
-<p>12</p>
-<p>13</p>
-<p>14</p>
-<p>15</p>
-<p>16</p>
-<p>17</p>
-<p>18</p>
-<p>19</p>
-<p>20</p>
-<p>21</p>
-<p>22</p>
-<p>23</p>
-<p>24</p>
-<p>25</p>
-<p>26</p>
-<p>27</p>
-<p>28</p>
-<p>29</p>
-<p>//mixin</p>
-<p>const  hi  =  {</p>
-<p>methods:  {</p>
-<p>sayHello:  function()  {</p>
-<p>console.log(‘hello from mixin!’)</p>
-<p>}</p>
-<p>},</p>
-<p>mounted()  {</p>
-<p>this.sayHello()</p>
-<p>}</p>
-<p>}</p>
-<p>//vue instance or component</p>
-<p>new  Vue({</p>
-<p>el:  ‘#app’,</p>
-<p>mixins:  [hi],</p>
-<p>methods:  {</p>
-<p>sayHello:  function()  {</p>
-<p>console.log(‘hello from Vue instance!’)</p>
-<p>}</p>
-<p>},</p>
-<p>mounted()  {</p>
-<p>this.sayHello()</p>
-<p>}</p>
-<p>})</p>
-<p>// Output in console</p>
-<blockquote>
-<p> hello from Vue instance!</p>
-</blockquote>
-<blockquote>
-<p> hello from Vue instance!</p>
-</blockquote>
-<p>你可能已经注意到这有两个<code>console.log</code>而不是一个——这是因为第一个函数被调用时，没有被销毁，它只是被重写了。我们在这里调用了两次<code>sayHello()</code>函数。</p>
-<h3 id="全局Mixin"><a href="#全局Mixin" class="headerlink" title="全局Mixin"></a>全局Mixin</h3><p>当我们使用“全局”来描述Mixin的时候，我们并不是说Mixin能够像filter，在每个组件都能被访问到。只是我们能够在组件通过<code>mixins:</code></p>
-<p>访问组件上的Mixin对象。</p>
-<p>全局Mixin被注册到了<em>每个单一组件上</em>。因此，它们的使用场景_极其_有限并且在使用的时候我们需要非常小心。一个我能想到的用途就是类似于插件，你需要赋予它访问所有东西的权限。但即使在这种情况下，我也对你正在做事情的充满警惕，尤其当你打算为应用增加通能的时候，这样做可能对你来说是个潘多拉的盒子。</p>
-<p>为了创建一个全局实例，我们可以把它放在Vue实例之上。在一个典型的 Vue-cli 初始化的项目中，它可能在你的<code>main.js</code>文件中。</p>
-<p>JavaScript</p>
-<p>Vue.mixin({ mounted() { console.log(‘hello from mixin!’) } }) new Vue({ … })</p>
-<p>1</p>
-<p>2</p>
-<p>3</p>
-<p>4</p>
-<p>5</p>
-<p>6</p>
-<p>7</p>
-<p>8</p>
-<p>9</p>
-<p>Vue.mixin({</p>
-<p>mounted()  {</p>
-<p>console.log(‘hello from mixin!’)</p>
-<p>}</p>
-<p>})</p>
-<p>new  Vue({</p>
-<p>…</p>
-<p>})</p>
+<h3 id="基础实例"><a href="#基础实例" class="headerlink" title="基础实例"></a>基础实例</h3><p>我们有一对不同的组件，它们的作用是通过切换状态（Boolean类型）来展示或者隐藏模态框或提示框。这些提示框和模态框除了功能相似以外，没有其他共同点：它们看起来不一样，用法不一样，但是逻辑一样。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br></pre></td><td class="code"><pre><span class="line">JavaScript</span><br><span class="line"></span><br><span class="line">// 模态框 </span><br><span class="line">const Modal = &#123;</span><br><span class="line">    template: &apos;#modal&apos;,</span><br><span class="line">    data() &#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            isShowing: false</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">        toggleShow() &#123;</span><br><span class="line">            this.isShowing = !this.isShowing;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    components: &#123;</span><br><span class="line">        appChild: Child</span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br><span class="line">  // 提示框 </span><br><span class="line">  const Tooltip = &#123; template: &apos;#tooltip&apos;, data() &#123; return &#123; isShowing: false &#125; &#125;, methods: &#123; toggleShow() &#123; this.isShowing = !this.isShowing; &#125; &#125;, components: &#123; appChild: Child &#125; &#125;</span><br><span class="line"></span><br><span class="line">// 模态框</span><br><span class="line"></span><br><span class="line">const  Modal  =  &#123;</span><br><span class="line"></span><br><span class="line">  template:  &apos;#modal&apos;,</span><br><span class="line"></span><br><span class="line">  data()  &#123;</span><br><span class="line"></span><br><span class="line">  return  &#123;</span><br><span class="line"></span><br><span class="line">  isShowing:  false</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">methods:  &#123;</span><br><span class="line"></span><br><span class="line">  toggleShow()  &#123;</span><br><span class="line"></span><br><span class="line">  this.isShowing  =  !this.isShowing;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">components:  &#123;</span><br><span class="line"></span><br><span class="line">  appChild:  Child</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 提示框</span><br><span class="line"></span><br><span class="line">const  Tooltip  =  &#123;</span><br><span class="line"></span><br><span class="line">  template:  &apos;#tooltip&apos;,</span><br><span class="line"></span><br><span class="line">  data()  &#123;</span><br><span class="line"></span><br><span class="line">  return  &#123;</span><br><span class="line"></span><br><span class="line">  isShowing:  false</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">methods:  &#123;</span><br><span class="line"></span><br><span class="line">  toggleShow()  &#123;</span><br><span class="line"></span><br><span class="line">  this.isShowing  =  !this.isShowing;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">components:  &#123;</span><br><span class="line"></span><br><span class="line">  appChild:  Child</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//我们可以在这里提取逻辑并创建可以被重用的项：</span><br><span class="line"></span><br><span class="line">JavaScript</span><br><span class="line"></span><br><span class="line">const toggle = &#123;</span><br><span class="line">    data() &#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            isShowing: false</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;, methods: &#123;</span><br><span class="line">        toggleShow() &#123;</span><br><span class="line">            this.isShowing = !this.isShowing;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">const Modal = &#123;</span><br><span class="line">    template: &apos;#modal&apos;,</span><br><span class="line">    mixins: \ [toggle\],</span><br><span class="line">    components: &#123;</span><br><span class="line">        appChild: Child</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">const Tooltip = &#123;</span><br><span class="line">    template: &apos;#tooltip&apos;,</span><br><span class="line">    mixins: \ [toggle\],</span><br><span class="line">    components: &#123;</span><br><span class="line">        appChild: Child</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">const toggle = &#123;</span><br><span class="line"></span><br><span class="line">    data() &#123;</span><br><span class="line"></span><br><span class="line">        return &#123;</span><br><span class="line"></span><br><span class="line">            isShowing: false</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    methods: &#123;</span><br><span class="line"></span><br><span class="line">        toggleShow() &#123;</span><br><span class="line"></span><br><span class="line">            this.isShowing = !this.isShowing;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const Modal = &#123;</span><br><span class="line"></span><br><span class="line">    template: &apos;#modal&apos;,</span><br><span class="line"></span><br><span class="line">    mixins: \ [toggle\],</span><br><span class="line"></span><br><span class="line">    components: &#123;</span><br><span class="line"></span><br><span class="line">        appChild: Child</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">const Tooltip = &#123;</span><br><span class="line"></span><br><span class="line">    template: &apos;#tooltip&apos;,</span><br><span class="line"></span><br><span class="line">    mixins: \ [toggle\],</span><br><span class="line"></span><br><span class="line">    components: &#123;</span><br><span class="line"></span><br><span class="line">        appChild: Child</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">你可以点击这里，查看 Sarah Drasner([@sdras](https://codepen.io/sdras)) 在[CodePen](https://codepen.io)上编写 [Mixin](https://codepen.io/sdras/pen/101a5d737b31591e5801c60b666013db/) 的例子</span><br><span class="line"></span><br><span class="line">为了更容易理解Mixin，这个例子故意编写得简单一些。真实应用中Mixin有如下的应用，但是它的作用也不仅限于此：获取视窗和组件的尺寸，采集特定的鼠标事件和图表的基本元素。Paul Pflugradt 有一个关于 [Vue Mixins 的优秀项目](https://github.com/paulpflug/vue-mixins)，值得一提的是它是用 coffeescript 编写的。</span><br><span class="line"></span><br><span class="line">### 用法</span><br><span class="line"></span><br><span class="line">上面这个codepen的例子并没有告诉我们在一个真实的应用中如何使用Mixin，所以我们看看下面的这个。</span><br><span class="line"></span><br><span class="line">你可以按照你喜欢的任意方式设置你的目录结构，但为了结构规整我喜欢新建一个`mixin`目录。我们创建的这个文件含有`.js`扩展名（跟`.vue`相对，就像我们的其他文件），为了使用Mixin我们需要输出一个对象。</span><br><span class="line"></span><br><span class="line">![directory structure shows mixins in a folder in components directory](http://jbcdn2.b0.upaiyun.com/2017/07/df4bdb49356f53506124dbd7509a7195.jpg)</span><br><span class="line"></span><br><span class="line">接着我们可以在Modal.vue使用这样的写法，来引入这个Mixin:</span><br><span class="line"></span><br><span class="line">JavaScript</span><br><span class="line">import Child from &apos;./Child&apos;</span><br><span class="line">import &#123;</span><br><span class="line">    toggle</span><br><span class="line">&#125;</span><br><span class="line">from &apos;./mixins/toggle&apos;</span><br><span class="line">export</span><br><span class="line">default &#123;</span><br><span class="line">    name: &apos;modal&apos;,</span><br><span class="line">    mixins: \ [toggle\],</span><br><span class="line">    components: &#123;</span><br><span class="line">        appChild: Child</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">import Child from &apos;./Child&apos;</span><br><span class="line"></span><br><span class="line">import &#123;</span><br><span class="line">    toggle</span><br><span class="line">&#125;</span><br><span class="line">from &apos;./mixins/toggle&apos;</span><br><span class="line"></span><br><span class="line">export</span><br><span class="line">default &#123;</span><br><span class="line"></span><br><span class="line">    name: &apos;modal&apos;,</span><br><span class="line"></span><br><span class="line">    mixins: \ [toggle\],</span><br><span class="line"></span><br><span class="line">    components: &#123;</span><br><span class="line"></span><br><span class="line">        appChild: Child</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">即便我们使用的是一个对象而不是一个组件，生命周期函数对我们来说仍然是可用的，理解这点很重要。我们也可以这里使用`mounted()`钩子函数，它将被应用于组件的生命周期上。这种工作方式真的很灵活也很强大。</span><br><span class="line"></span><br><span class="line">### 合并</span><br><span class="line"></span><br><span class="line">在下面的这个例子，我们可以看到，我们不仅仅是实现了自己想要的功能，并且Mixin中的生命周期的钩子也同样是可用的。因此，当我们在组件上应用Mixin的时候，有可能组件与Mixin中都定义了相同的生命周期钩子，这时候钩子的执行顺序的问题凸显了出来。默认Mixin上会首先被注册，组件上的接着注册，这样我们就可以在组件中按需要重写Mixin中的语句。**组件拥有最终发言权。**当发生冲突并且这个组件就不得不“决定”哪个胜出的时候，这一点就显得特别重要，否则，所有的东西都被放在一个数组当中执行，Mixin将要被先推入数组，其次才是组件。</span><br><span class="line"></span><br><span class="line">JavaScript</span><br><span class="line"></span><br><span class="line">//mixin </span><br><span class="line">const hi = &#123;</span><br><span class="line">    mounted() &#123;</span><br><span class="line">        console.log(&apos;hello from mixin!&apos;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125; //vue instance or component new Vue(&#123; el: &apos;#app&apos;, mixins: \[hi\], mounted() &#123; console.log(&apos;hello from Vue instance!&apos;) &#125; &#125;); //Output in console &gt; hello from mixin! &gt; hello from Vue instance!</span><br><span class="line"></span><br><span class="line">//mixin</span><br><span class="line"></span><br><span class="line">const hi = &#123;</span><br><span class="line"></span><br><span class="line">    mounted() &#123;</span><br><span class="line"></span><br><span class="line">        console.log(&apos;hello from mixin!&apos;)</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//vue instance or component</span><br><span class="line"></span><br><span class="line">new Vue(&#123;</span><br><span class="line"></span><br><span class="line">    el: &apos;#app&apos;,</span><br><span class="line"></span><br><span class="line">    mixins: \ [hi\],</span><br><span class="line"></span><br><span class="line">    mounted() &#123;</span><br><span class="line"></span><br><span class="line">        console.log(&apos;hello from Vue instance!&apos;)</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">//Output in console</span><br><span class="line"></span><br><span class="line">&gt;  hello from mixin!</span><br><span class="line"></span><br><span class="line">&gt;  hello from Vue instance!</span><br><span class="line"></span><br><span class="line">如果这两个冲突了，我们看看 Vue实例或组件是如何决定输赢的：</span><br><span class="line"></span><br><span class="line">JavaScript</span><br><span class="line"></span><br><span class="line">//mixin </span><br><span class="line">const hi = &#123;</span><br><span class="line">    methods: &#123;</span><br><span class="line">        sayHello: function () &#123;</span><br><span class="line">            console.log(&apos;hello from mixin!&apos;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    mounted() &#123;</span><br><span class="line">        this.sayHello()</span><br><span class="line">    &#125;</span><br><span class="line">&#125; //vue instance or component new Vue(&#123; el: &apos;#app&apos;, mixins: \[hi\], methods: &#123; sayHello: function() &#123; console.log(&apos;hello from Vue instance!&apos;) &#125; &#125;, mounted() &#123; this.sayHello() &#125; &#125;) // Output in console &gt; hello from Vue instance! &gt; hello from Vue instance!</span><br><span class="line"></span><br><span class="line">//mixin</span><br><span class="line"></span><br><span class="line">const hi = &#123;</span><br><span class="line"></span><br><span class="line">    methods: &#123;</span><br><span class="line"></span><br><span class="line">        sayHello: function () &#123;</span><br><span class="line"></span><br><span class="line">            console.log(&apos;hello from mixin!&apos;)</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    mounted() &#123;</span><br><span class="line"></span><br><span class="line">        this.sayHello()</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//vue instance or component</span><br><span class="line"></span><br><span class="line">new Vue(&#123;</span><br><span class="line"></span><br><span class="line">    el: &apos;#app&apos;,</span><br><span class="line"></span><br><span class="line">    mixins: \ [hi\],</span><br><span class="line"></span><br><span class="line">    methods: &#123;</span><br><span class="line"></span><br><span class="line">        sayHello: function () &#123;</span><br><span class="line"></span><br><span class="line">            console.log(&apos;hello from Vue instance!&apos;)</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    mounted() &#123;</span><br><span class="line"></span><br><span class="line">        this.sayHello()</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">// Output in console</span><br><span class="line"></span><br><span class="line">&gt;  hello from Vue instance!</span><br><span class="line"></span><br><span class="line">&gt;  hello from Vue instance!</span><br><span class="line"></span><br><span class="line">你可能已经注意到这有两个`console.log`而不是一个——这是因为第一个函数被调用时，没有被销毁，它只是被重写了。我们在这里调用了两次`sayHello()`函数。</span><br><span class="line"></span><br><span class="line">### 全局Mixin</span><br><span class="line"></span><br><span class="line">当我们使用“全局”来描述Mixin的时候，我们并不是说Mixin能够像filter，在每个组件都能被访问到。只是我们能够在组件通过`mixins:`</span><br><span class="line"></span><br><span class="line">访问组件上的Mixin对象。</span><br><span class="line"></span><br><span class="line">全局Mixin被注册到了_每个单一组件上_。因此，它们的使用场景_极其_有限并且在使用的时候我们需要非常小心。一个我能想到的用途就是类似于插件，你需要赋予它访问所有东西的权限。但即使在这种情况下，我也对你正在做事情的充满警惕，尤其当你打算为应用增加通能的时候，这样做可能对你来说是个潘多拉的盒子。</span><br><span class="line"></span><br><span class="line">为了创建一个全局实例，我们可以把它放在Vue实例之上。在一个典型的 Vue-cli 初始化的项目中，它可能在你的`main.js`文件中。</span><br><span class="line"></span><br><span class="line">JavaScript</span><br><span class="line"></span><br><span class="line">Vue.mixin(&#123;</span><br><span class="line">    mounted() &#123;</span><br><span class="line">        console.log(&apos;hello from mixin!&apos;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;) new Vue(&#123;...</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">Vue.mixin(&#123;</span><br><span class="line"></span><br><span class="line">    mounted() &#123;</span><br><span class="line"></span><br><span class="line">        console.log(&apos;hello from mixin!&apos;)</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">new Vue(&#123;</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -695,7 +410,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/12/e5-be-ae-e4-bf-a1-e6-b5-8f-e8-a7-88-e5-99-a8-e9-98-b2-e6-ad-a2-e9-a1-b5-e9-9d-a2-e5-9b-9e-e9-80-80.html" rel="next" title="微信浏览器防止页面回退">
+              <a href="/2018/12/12/16.html" rel="next" title="微信浏览器防止页面回退">
                 <i class="fa fa-chevron-left"></i> 微信浏览器防止页面回退
               </a>
             
@@ -705,7 +420,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/02/02/e5-be-ae-e4-bf-a1-e5-85-ac-e4-bc-97-e5-8f-b7-e5-85-b3-e6-b3-a8-e5-90-8e-e8-bf-94-e5-9b-9e-ef-bc-8c-e5-a6-82-e4-bd-95-e5-88-a4-e6-96-ad-e5-b7-b2-e7-bb-8f-e8-bf-94-e5-9b-9e-e5-88-b0-e8-87-aa-e5-b7-b1.html" rel="prev" title="微信公众号关注后返回，如何判断已经返回到自己的页面？">
+              <a href="/2019/02/02/15.html" rel="prev" title="微信公众号关注后返回，如何判断已经返回到自己的页面？">
                 微信公众号关注后返回，如何判断已经返回到自己的页面？ <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -784,7 +499,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">41</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -880,7 +595,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#基础实例"><span class="nav-number">1.</span> <span class="nav-text">基础实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用法"><span class="nav-number">2.</span> <span class="nav-text">用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#合并"><span class="nav-number">3.</span> <span class="nav-text">合并</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#全局Mixin"><span class="nav-number">4.</span> <span class="nav-text">全局Mixin</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#基础实例"><span class="nav-number">1.</span> <span class="nav-text">基础实例</span></a></li></ol></div>
             
 
           </div>
@@ -918,8 +633,6 @@
   
 </div>
 
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
 
 

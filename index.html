@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://cookyg.github.io/2019/03/22/e5-85-b3-e4-ba-8e-e5-9c-a8-e7-a7-bb-e5-8a-a8-e7-ab-af-body-overflow-ef-bc-9ahidden-e6-97-a0-e6-95-88-e7-9a-84-e9-97-ae-e9-a2-98.html">
+    <link itemprop="mainEntityOfPage" href="https://cookyg.github.io/2019/05/16/js中几种实用的跨域方法原理详解.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hao Pu">
@@ -272,7 +272,164 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/03/22/e5-85-b3-e4-ba-8e-e5-9c-a8-e7-a7-bb-e5-8a-a8-e7-ab-af-body-overflow-ef-bc-9ahidden-e6-97-a0-e6-95-88-e7-9a-84-e9-97-ae-e9-a2-98.html" itemprop="url">关于在移动端 body overflow：hidden 无效的问题</a></h1>
+                <a class="post-title-link" href="/2019/05/16/js中几种实用的跨域方法原理详解.html" itemprop="url">js中几种实用的跨域方法原理详解</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-16T14:07:52+08:00">
+                2019-05-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <meta name="referrer" content="no-referrer">
+
+<p>这里说的js跨域是指通过js在不同的域之间进行数据传输或通信，比如用ajax向一个不同的域请求数据，或者通过js获取页面中不同域的框架中(iframe)的数据。只要协议、域名、端口有任何一个不同，都被当作是不同的域。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/05/16/js中几种实用的跨域方法原理详解.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://cookyg.github.io/2019/03/22/09.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hao Pu">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CookyGG的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/22/09.html" itemprop="url">关于在移动端 body overflow：hidden 无效的问题</a></h1>
         
 
         <div class="post-meta">
@@ -376,86 +533,17 @@
 
       
         
-          
-            <p>关于在移动端 body overflow：hidden 无效的问题</p>
-<p><img src="//upload-images.jianshu.io/upload_images/2243106-2126781aba9c7466.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp" alt></p>
-<p>一、简述</p>
-<p>这篇文章作为一道前菜哈。</p>
-<p>很多同学在做移动端的时候都有遇到移动端各种坑，各种固定fiexd失效，input输入框错位，软键盘弹出错位等等….但是，在做一张单页面的页面时，尤其是以整个页面去加载背景图片的时候，背景图片固定就很有必要了。</p>
-<p>这里先讨论一下body关于overflow的问题，移动端固定的问题会在下一篇文章讨论。</p>
-<p>二、简单演示</p>
-<p>很多时候都是想着使用body去固定:</p>
-<pre><code>body{
+          <meta name="referrer" content="no-referrer">
 
-            position:fixed; //这个属性暂时不提，重点看overflow
 
-            overflow:hidden;
-
-}
-</code></pre><p>1、这样的效果在「PC端」是可以的，整个页面时被固定的：</p>
-<p>em….感觉说的好空，有句话说得好<strong>「talk is easy ,show me the code」</strong> ，上个demo ：</p>
-<p><img src="//upload-images.jianshu.io/upload_images/2243106-27bd3df19584f413.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp" alt></p>
-<p>em…上完code，再来「PC端」的效果演示：</p>
-<p><img src="//upload-images.jianshu.io/upload_images/2243106-7265ffb87afa2444.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp" alt></p>
-<p>OK，上面GIF演示的效果已经告诉我们，body的<strong>overflow：hidden</strong>在「PC端」是有效果的。</p>
-<p>em..接下来是重点好吧，说说在移动端的body 如何不行？</p>
-<p>2、同样的样式在「移动端」是可以滑动的，可以滑动就是不合理了。</p>
-<p>如何看手机的上样式效果对不对，我这里稍微讲2种方式哈：</p>
-<p>（<strong>A.</strong>说用「微信开发者工具」的同学，我这里就不讲了，这也是一种方法可以查看移动端的样式效果，尤其是要用在微信网页中的，是一个不错的推荐。<strong>B.</strong>说用模拟器的同学，我也不想说太多了，查看一个简单的样式，难道要全开安卓和iOS 模拟器？）</p>
-<p>2.1、放到服务器上</p>
-<p>这样，我把网页放到了我个人的服务器上，比较简单粗暴的做法，很通用哈，一输网址就可以看到了，下面是把网页放到手机之后的效果：</p>
-<p><img src="//upload-images.jianshu.io/upload_images/2243106-ebc6eb27e2517d2a.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/544/format/webp" alt></p>
-<p>看到上面效果，what！！！body的hidden:overflow确实在「移动端」真是无效的，很明显的是可以滑动..</p>
-<p>这时IOS手机上的效果，在安卓手机上同样也是一样的效果，这里我就不录屏了，有点累呀</p>
-<p>细心的同学可以发现我手机上的网页会出现蓝色，橙色的遮罩，em…get 到我这个点了，上面演示的是第二种方法里的一些调试。</p>
-<p>2.2使用远程web调试工具—–weinre</p>
-<p>️<strong>注意！注意！注意！使用的是weinre这款远程调试工具，重要的事情讲一遍。</strong></p>
-<p><img src="//upload-images.jianshu.io/upload_images/2243106-a9b1330548560d96.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/622/format/webp" alt></p>
-<p>上面说的就是可以使用这个款远程web页面调试工具，一款稍显老的工具，不过<strong>好在可以跨平台全终端使用，可以无线查看和调试dom和css样式，</strong>但是不可以修改dom,不可以断点调试…em…缺点比较多，但是用来查看这个demo是妥妥的。</p>
-<pre><code>有兴趣的同学可以找一下weinre的使用方法。（或者空闲的时候写一下使用weinre的基本教程和心得）
-</code></pre><p>原理就是需要在原网页中插入一段js代码，实现中间的target，用于传输调试请求，请保持在同一网络上。</p>
-<p>️ <strong>重点来了！重点来了！重点来了！</strong></p>
-<p>作用： <strong>2.2.1、可以实现移动端可以无线直接查看本地电脑编写的网页，而无需放置到服务器上。</strong></p>
-<pre><code>**2.2.2、可以实现在电脑直接对移动端进行dom和样式调试，无线连接调试。**
-</code></pre><p>可以上个图看一下效果；</p>
-<p>第一种情况：就是我直接在weinre目录中添加需要查看的文件，在手机上可以直接访问电脑ip，获取本地编写的网页。</p>
-<p>上个图先：</p>
-<p><strong>～文件所在：</strong></p>
-<p><img src="//upload-images.jianshu.io/upload_images/2243106-6b5a01a45452d2ac.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/414/format/webp" alt></p>
-<p><strong>～手机访问：</strong></p>
-<p><img src="//upload-images.jianshu.io/upload_images/2243106-99eb6f4486319678.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp" alt></p>
-<pre><code>可以清晰的看到手机和电脑处于同一局域网，手机正在访问到电脑本地的网页。
-
-    第二种情况：我把网页放到了我的服务器上，手机访问可以直接查看，在电脑上也是可以对手机的样式进行调试的，如下图：
-</code></pre><p><img src="//upload-images.jianshu.io/upload_images/2243106-30ec766d9a0500ef.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp" alt></p>
-<pre><code>这里是可以看到我通过网络访问进行的，并在浏览器出现类似于chrome dev调试工具的页面，正在对手机样式进行调试。
-
-  **好吧综上所述，可以看到weinre是可以又这个能力对移动端进行样式调试的，并且证明说overflow:hidden在移动端确实是可以进行无障碍的滑动。**
-
-️️️ 回到主题！回到主题！回到主题！
-</code></pre><p>三、结论以及解决方法</p>
-<pre><code>事实证明了hidden在移动端无效。原因总结来说是移动端的坑，对网页兼容的问题；我觉得是移动端网页的html页面本身也是可以「上下拉扯滑动1」的，而body的position位置默认是static，不做修改的情况下是直接随着html页面「滑动1」，而body可以直接在html内实现「滑动2」，（两个滑动是不一样的滑动，「滑动1」指的是整个html相对于浏览器窗口滑动，「滑动2」指的是整个body相对于html页面滑动）
-</code></pre><p>下面是「滑动1」的如图：</p>
-<p><img src="//upload-images.jianshu.io/upload_images/2243106-6ab5a94a0a1fdd29.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp" alt></p>
-<p>「滑动2」就是我们本身可以看到的那种效果。</p>
-<pre><code>解决方法：
-
-通过父节点固定，像body的父节点是html，可以通过固定父节点html， 来把其下的字节点固定，当然字节点前提是不做脱离文档流的行为。
-</code></pre><p><strong>    html{</strong></p>
-<p><strong>          position:fixed;</strong></p>
-<p><strong>            height:100%;</strong></p>
-<p><strong>            width:100%;</strong></p>
-<p><strong>    }</strong></p>
-<p>  完整代码如下：</p>
-<p><img src="//upload-images.jianshu.io/upload_images/2243106-f0f424c38594fc6b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/959/format/webp" alt></p>
-<p>这里剧个透，有个细节的地方是：</p>
-<p>比较多的同学会直接不添加父节点固定，而是直接把body给赋值position:fixed了；如下</p>
-<p><img src="//upload-images.jianshu.io/upload_images/2243106-72f7e63be828f2d9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/478/format/webp" alt></p>
-<p><strong>直接这样写的，很明显在手机端可以看到，body是固定的，但是整个html页面在滑动，这就达不到固定的预期的要求了。同时这样子很容易会造成一种错觉，在接下来写的元素中会让人觉得是整个element在自己滑动，其实不是，是html页面在滑动。</strong></p>
-<p>嗯嗯，总结来说就是这样子。有关于移动端的坑可以交流一下，我这里刚好有些链接，本人觉得是挺不错的各种移动端的坑的总结。</p>
-<p>作者：Cc卿<br>链接：<a href="https://www.jianshu.com/p/526ed6e6b92e" target="_blank" rel="noopener">https://www.jianshu.com/p/526ed6e6b92e</a><br>来源：简书</p>
-
-          
+<p>关于在移动端 body overflow：hidden 无效的问题</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/22/09.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -502,7 +590,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://cookyg.github.io/2019/03/14/e5-be-ae-e4-bf-a1-e6-b5-8f-e8-a7-88-e5-99-a8input-e5-85-b3-e9-97-ad-e9-94-ae-e7-9b-98-e5-90-8e-e5-af-bc-e8-87-b4-e9-a1-b5-e9-9d-a2-e5-ba-95-e9-83-a8-e7-a9-ba-e7-bc-ba-e9-97-ae-e9-a2-98-e8-a7-a3.html">
+    <link itemprop="mainEntityOfPage" href="https://cookyg.github.io/2019/03/14/17.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hao Pu">
@@ -521,7 +609,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/03/14/e5-be-ae-e4-bf-a1-e6-b5-8f-e8-a7-88-e5-99-a8input-e5-85-b3-e9-97-ad-e9-94-ae-e7-9b-98-e5-90-8e-e5-af-bc-e8-87-b4-e9-a1-b5-e9-9d-a2-e5-ba-95-e9-83-a8-e7-a9-ba-e7-bc-ba-e9-97-ae-e9-a2-98-e8-a7-a3.html" itemprop="url">微信浏览器input关闭键盘后导致页面底部空缺问题解决方案</a></h1>
+                <a class="post-title-link" href="/2019/03/14/17.html" itemprop="url">微信浏览器input关闭键盘后导致页面底部空缺问题解决方案</a></h1>
         
 
         <div class="post-meta">
@@ -625,26 +713,19 @@
 
       
         
-          
-            <p>这个问题是在部分ios手机里出现的，目前安卓手机没有复现。</p>
+          <meta name="referrer" content="no-referrer">
+
+<p>这个问题是在部分ios手机里出现的，目前安卓手机没有复现。</p>
 <p>猜测：在微信webview打开我们h5页面的时候，就固定了页面的高度，如果这个input在页面的底部，当呼出软键盘时，由于高度问题，整个webview会被键盘顶上去，而取消时没有恢复原状。</p>
 <p>解决办法：</p>
 <p>绑定一个blur事件，当其触发时，使scrollTo为0</p>
-<p>付代码如下：</p>
-<pre><code>      &lt;input
-        type=&quot;text&quot;
-        class=&quot;inputValue&quot;
-        v-model=&quot;teamCodeValue&quot;
-        @blur=&quot;inputBlur&quot;
-        placeholder=&quot;说明&quot;
-      &gt;
-//对应的methods中添加js
-inputBlur () {
-  window.scrollTo(0, 0)
-},
-</code></pre><h2 id="方可解决-亲测有效"><a href="#方可解决-亲测有效" class="headerlink" title="方可解决  亲测有效"></a>方可解决  亲测有效</h2><p>作者：Song-宋-Song<br>来源：CSDN<br>原文：<a href="https://blog.csdn.net/qq_40028324/article/details/85333956" target="_blank" rel="noopener">https://blog.csdn.net/qq_40028324/article/details/85333956</a><br>版权声明：本文为博主原创文章，转载请附上博文链接！</p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/14/17.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -691,7 +772,7 @@ inputBlur () {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://cookyg.github.io/2019/02/18/e8-81-8a-e8-81-8a-e5-89-8d-e7-ab-af-e5-9b-bd-e9-99-85-e5-8c-96-e6-96-87-e6-a1-88-e8-af-a5-e5-a6-82-e4-bd-95-e5-a4-84-e7-90-86.html">
+    <link itemprop="mainEntityOfPage" href="https://cookyg.github.io/2019/02/18/21.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hao Pu">
@@ -710,7 +791,7 @@ inputBlur () {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/18/e8-81-8a-e8-81-8a-e5-89-8d-e7-ab-af-e5-9b-bd-e9-99-85-e5-8c-96-e6-96-87-e6-a1-88-e8-af-a5-e5-a6-82-e4-bd-95-e5-a4-84-e7-90-86.html" itemprop="url">聊聊前端国际化文案该如何处理</a></h1>
+                <a class="post-title-link" href="/2019/02/18/21.html" itemprop="url">聊聊前端国际化文案该如何处理</a></h1>
         
 
         <div class="post-meta">
@@ -814,80 +895,17 @@ inputBlur () {
 
       
         
-          
-            <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>最近接到一个海外项目业务需求，项目最终会被来自不同国家的客户所使用，期望能让客户有一个良好的用户体验，因此前端需要适配国际化。</p>
-<h2 id="面临的挑战"><a href="#面临的挑战" class="headerlink" title="面临的挑战"></a>面临的挑战</h2><p>乍一听，这个海外项目需求并没有什么特别的地方，似乎就多了一个国际化适配。但细细一想，事情可没这么简单，前端开发面临了很多新的问题。下面梳理一下国际化开发中通常会面临的挑战：</p>
-<ul>
-<li>页面文案全部可配置 需要配置的文案大致有四种：label、placeholder、字段校验提示信息、超链接。</li>
-<li>页面文案样式处理 文案样式需要特别注意，不同语言的文字，可能会有不同的表现。例如下面两张图所示：<ul>
-<li>英语（页面样式正常）</li>
-<li>俄语（页面样式异常）</li>
-</ul>
-</li>
-<li>日期、数字格式处理 页面上展示日期或数量的地方，也是需要做国际化适配。</li>
-<li>LTR／RTL 很多中东国家的语言习惯都是 RTL，可以尝试使用 direction 和 transform 来解决。</li>
-<li>图片（banner）国际化 如果你想把国际化做的足够精细，那么图片国际化也是需要考虑的。</li>
-<li>第三方 UI 组件 如果使用了第三方 UI 组件，如：elementUI、ant design UI 等，这些 UI 框架通常都宣称支持国际化，但支持的国际化语言数量有限，并不一定能满足业务需求。</li>
-<li>前端开发工作量和后期维护成本激增 大量的文案需要被提取出来，被提取出来的文案最终会被合并到一个文件中去，如：en-US.json。这些工作如果通过手工完成，那么工作量会是非常巨大的。</li>
-</ul>
-<h2 id="国际化文案的处理思路"><a href="#国际化文案的处理思路" class="headerlink" title="国际化文案的处理思路"></a>国际化文案的处理思路</h2><p>以上列举出了很多挑战，但实际上“页面文案处理”才是最主要的矛盾，因为它直接导致前端开发工作量和维护成本的激增。下面我们重点来讨论文案处理思路，其实从实现国际化的角度来看，jQuery、Vue、React 等都只是载体而已，实现思路都是相通的，因此国际化文案处理与具体的技术框架并不耦合。接下来将会抛出几种国际化文案处理思路，每种思路对生产力和生产关系的要求有高有低，姑且将其分别对应为石器时期、青铜时期、黄金时期。</p>
-<h3 id="石器时期"><a href="#石器时期" class="headerlink" title="石器时期"></a>石器时期</h3><p>传统的国际化开发流程：前端开发到一定阶段，将文案提取到资源文件（通常为 en-US.json），然后将资源文件发送给翻译团队，翻译团队翻译出各国语言版本的文案，每种语言对应一个资源文件，最后将这些资源文件发回给前端开发人员，前端开发人员更新到自己本地。如下图所示：</p>
-<p><img src="https://user-gold-cdn.xitu.io/2019/2/18/168fe753d03cff9f?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt></p>
-<ul>
-<li>适用场景<ol>
-<li>页面上要提取的文案不多</li>
-<li>支持的国际化语言较少，比如：只需要支持中文和英文</li>
-<li>项目需求较固定，后期只做简单维护，不会新增大的需求</li>
-</ol>
-</li>
-<li>分析 这是国际化开发的基本流程，“前端开发”和“翻译团队”是必不可少的两个节点，但它们相互之间依赖的太重。“提取文案”的过程本质上是在重复劳动，因此可以考虑由程序来完成。</li>
-<li><p>代码示例</p>
-<ul>
-<li>App.js</li>
-</ul>
-<p><code>import React, { Component } from &#39;react&#39;; import { IntlProvider, FormattedMessage } from &#39;react-intl&#39;; import qs from &#39;querystring&#39;; import logo from &#39;./logo.svg&#39;; import &#39;./App.css&#39;; import DEFAULT_MESSAGES from &#39;./i18n/en-US.json&#39;; const DEFAULT_LOCALE = &#39;en-US&#39;; class App extends Component { state = { messages: DEFAULT_MESSAGES, }; componentWillMount() { const search = window.location.search.slice(1); const params = qs.parse(search); const locale = params.locale || DEFAULT_LOCALE; const messages = require(`./i18n/${locale}.json`); debugger; this.setState({ messages, }); } render() { const { messages } = this.state; return ( &lt;IntlProvider locale=&quot;en&quot; messages={messages}&gt; &lt;div className=&quot;App&quot;&gt; &lt;header className=&quot;App-header&quot;&gt; &lt;img src={logo} className=&quot;App-logo&quot; alt=&quot;logo&quot; /&gt; &lt;p&gt; &lt;FormattedMessage id=&quot;welcome&quot; defaultMessage={`Hello world!`} /&gt; &lt;/p&gt; &lt;a className=&quot;App-link&quot; href=&quot;/?locale=zh-CN&quot; rel=&quot;noopener noreferrer&quot; &gt; zh-CN &lt;/a&gt; &lt;a className=&quot;App-link&quot; href=&quot;/?locale=en-US&quot; rel=&quot;noopener noreferrer&quot; &gt; en-US &lt;/a&gt; &lt;/header&gt; &lt;/div&gt; &lt;/IntlProvider&gt; ); } } export default App; 复制代码</code></p>
-<ul>
-<li>en-US.json</li>
-</ul>
-<p><code>{ &quot;welcome&quot;: &quot;Hello world!&quot; } 复制代码</code></p>
-</li>
-</ul>
-<h3 id="青铜时期"><a href="#青铜时期" class="headerlink" title="青铜时期"></a>青铜时期</h3><p>前面分析了“提取文案”的过程本质上是在重复劳动，那我们看看有没有办法进行改进。我们可以先对比一下“无国际化需求”和“有国际化需求”时的前端开发流程。如图所示：</p>
-<p><img src="https://user-gold-cdn.xitu.io/2019/2/18/168fe753d0fd39b2?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt></p>
-<p>可以看出右边多了三个过程：</p>
-<ol>
-<li>将文案提取为变量</li>
-<li>为变量命名，要合乎其场景</li>
-<li>将变量和文案信息存到资源文件</li>
-</ol>
-<p>这里我们提出一个期望或愿景：希望能像开发普通业务一样去开发有国际化需求的业务！</p>
-<p>为了达成这一愿景，我们需要有一个工具：它能够扫描指定的文件，并能识别出文件中的字符串，然后能根据字符串的含义生成变量名，并用变量表达式替换掉原来的字符串，最后能够将提取出来的变量自动追加到资源文件中。</p>
-<p>如何实现这样的工具？我们可以用 Babel 将js文件解析为一颗语法树，然后遍历并找出字符串节点，接下来调用 Google Cloud Translation API 将字符串翻译为英文，并以此作为变量名得到变量表达式，最后用变量表达式替换掉原来的文本即可。如下图所示：</p>
-<p><img src="https://user-gold-cdn.xitu.io/2019/2/18/168fe753e25bfa3f?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt></p>
-<p>幸运的是，<a href="https://link.juejin.im?target=https%3A%2F%2Fgithub.com%2FProtoTeam%2Fi18n-pick" target="_blank" rel="noopener">i18n-pick</a> 已经有那么点味道了~</p>
-<p><img src="https://user-gold-cdn.xitu.io/2019/2/18/168fe753e72a3dce?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt></p>
-<ul>
-<li>分析 这是站在开发层面，对前端开发体验和开发效率提出的改进办法，<strong>将重复的事情交给程序去完成</strong>。</li>
-</ul>
-<h3 id="黄金时期"><a href="#黄金时期" class="headerlink" title="黄金时期"></a>黄金时期</h3><p>有了石器时期的生产方式作为铺垫，我们可以在此基础上继续做改进。既然“前端开发”和“翻译团队”之间依赖的太重，那我们可以在中间加一个节点“文案配置平台”。前端将提取的文案直接上传到“文案配置平台”，翻译团队直接在“文案配置平台”上进行文案翻译，前端直接从“文案配置平台”获取翻译后的最新文案。</p>
-<p><img src="https://user-gold-cdn.xitu.io/2019/2/18/168fe753e80a22b0?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt></p>
-<ul>
-<li>文案配置平台应当具备的基本能力<ol>
-<li>面向前端开发人员：文案录入、输出</li>
-<li>面向翻译团队：文案翻译、发布</li>
-<li>其他：文案版本控制</li>
-</ol>
-</li>
-<li>适用场景<ol>
-<li>有大量的国际化业务需求</li>
-<li>希望将其沉淀为通用能力平台，提升业务开发效率</li>
-</ol>
-</li>
-<li>分析 这是从架构层面对国际化开发方式进行优化和提效，一般大的互联网公司因为其自身业务的复杂度，都早已沉淀出很多的通用能力平台。</li>
-</ul>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>以上每种思路都有各自适用的场景，实际生产中需要从开发成本、开发体验、后期维护、能力沉淀等多维度进行考虑。这篇文章旨在抛砖引玉打开思路，各位看官可以将自己的思路抛出来一起讨论。<br>作者：ES2049<br>链接：<a href="https://juejin.im/post/5c6a19e5f265da2de9706cc9" target="_blank" rel="noopener">https://juejin.im/post/5c6a19e5f265da2de9706cc9</a><br>来源：掘金</p>
+          <meta name="referrer" content="no-referrer">
 
-          
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>最近接到一个海外项目业务需求，项目最终会被来自不同国家的客户所使用，期望能让客户有一个良好的用户体验，因此前端需要适配国际化。</p>
+<h2 id="面临的挑战"><a href="#面临的挑战" class="headerlink" title="面临的挑战"></a>面临的挑战</h2><p>乍一听，这个海外项目需求并没有什么特别的地方，似乎就多了一个国际化适配。但细细一想，事情可没这么简单，前端开发面临了很多新的问题。下面梳理一下国际化开发中通常会面临的挑战：</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/02/18/21.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -934,7 +952,7 @@ inputBlur () {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://cookyg.github.io/2019/02/02/e7-9b-91-e6-8e-a7-e9-a1-b5-e9-9d-a2-e5-90-8e-e9-80-80-e5-89-8d-e8-bf-9b-ef-bc-8c-e6-b5-8f-e8-a7-88-e5-99-a8-e6-96-87-e6-a1-a3-e5-8a-a0-e8-bd-bd-e4-ba-8b-e4-bb-b6-e4-b9-8bpageshow-e3-80-81pagehide.html">
+    <link itemprop="mainEntityOfPage" href="https://cookyg.github.io/2019/02/02/19.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hao Pu">
@@ -953,7 +971,7 @@ inputBlur () {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/02/e7-9b-91-e6-8e-a7-e9-a1-b5-e9-9d-a2-e5-90-8e-e9-80-80-e5-89-8d-e8-bf-9b-ef-bc-8c-e6-b5-8f-e8-a7-88-e5-99-a8-e6-96-87-e6-a1-a3-e5-8a-a0-e8-bd-bd-e4-ba-8b-e4-bb-b6-e4-b9-8bpageshow-e3-80-81pagehide.html" itemprop="url">监控页面后退前进，浏览器文档加载事件之pageshow、pagehide</a></h1>
+                <a class="post-title-link" href="/2019/02/02/19.html" itemprop="url">监控页面后退前进，浏览器文档加载事件之pageshow、pagehide</a></h1>
         
 
         <div class="post-meta">
@@ -1057,96 +1075,16 @@ inputBlur () {
 
       
         
-          
-            <h4 id="原文-https-www-cnblogs-com-milo-wjh-p-6811868-html"><a href="#原文-https-www-cnblogs-com-milo-wjh-p-6811868-html" class="headerlink" title="原文:https://www.cnblogs.com/milo-wjh/p/6811868.html"></a>原文:<a href="https://www.cnblogs.com/milo-wjh/p/6811868.html" target="_blank" rel="noopener">https://www.cnblogs.com/milo-wjh/p/6811868.html</a></h4><h2 id="发现了问题，首先分析一下呗："><a href="#发现了问题，首先分析一下呗：" class="headerlink" title="发现了问题，首先分析一下呗："></a><strong>发现了问题，首先分析一下呗：</strong></h2><h2 id="浏览器前进、后退使用机制"><a href="#浏览器前进、后退使用机制" class="headerlink" title="*浏览器前进、后退使用机制"></a>*浏览器前进、后退使用机制</h2><h2 id="如何在前进、后退后执行js"><a href="#如何在前进、后退后执行js" class="headerlink" title="*如何在前进、后退后执行js"></a>*如何在前进、后退后执行js</h2><h3 id="一-问题一：浏览器前进、后退使用机制"><a href="#一-问题一：浏览器前进、后退使用机制" class="headerlink" title="一. 问题一：浏览器前进、后退使用机制"></a>一. 问题一：浏览器前进、后退使用机制</h3><p>用户点击浏览器工具栏中的后退按钮，或者移动设备上的返回键时，或者JS执行history.go(-1);时，浏览器会在当前窗口“打开”历史纪录中的前一个页面。不同的浏览器在“打开”前一个页面的表现上并不统一，这和浏览器的实现以及页面本身的设置都有关系。在浏览器中，“后退到前一个页面”意味着：前一个页面的html/js/css等静态资源的请求（甚至是ajax动态接口请求）根本不会重新发送，直接使用缓存的响应，而不管这些静态资源响应的缓存策略是否被设置了禁用状态。<br>各个浏览器测试demo：先点击按钮使其变色，然后调整至百度，再后退回来查看:</p>
-<pre><code>function dispLog(msg) {
-  var d = new Date();
-  $(&quot;&lt;li /&gt;&quot;).text(d.toISOString().substr(14, 9) + &quot; &quot; + msg)
-  .appendTo(&quot;#dvDisp&quot;);
-}
+          <meta name="referrer" content="no-referrer">
 
-window.addEventListener(&apos;load&apos;, function(event) {
-    dispLog(&quot;Load Event  &quot;);
-})
-//引入了jq监听ready事件做比较
-$(window).ready(function () {
-    dispLog(&quot;Ready Event&quot;);
- });
-$(&quot;#btnSetColor&quot;).click(function () {
-    $(&quot;#btnSetColor&quot;).css(&quot;background&quot;, &quot;red&quot;);
-})
-window.addEventListener(&apos;pageshow&apos;, function(event) {
-    dispLog(&quot;PageShow Event  &quot; + event.persisted);
-    //使用event.persisted判断页面是否使用bfcache，值为true或false;  注：如果使用jq绑定事件，需使用event.originalEvent.persisted;
-})
-window.addEventListener(&apos;pagehide&apos;, function(event) {
-    dispLog(&quot;Load Event  &quot; + event.persisted);
-})
-</code></pre><p><img src="https://images2015.cnblogs.com/blog/1091419/201705/1091419-20170508150731941-1926847617.png" alt></p>
-<p>线上测试地址： <a href="http://www.milo-wjh.top/blog/pageshow/pageshow_test.html" target="_blank" rel="noopener">pageshow</a><br>移动端测试demo:  </p>
-<h4 id="本人的测试结果："><a href="#本人的测试结果：" class="headerlink" title="本人的测试结果："></a>本人的测试结果：</h4><h4 id="1-PC端浏览器"><a href="#1-PC端浏览器" class="headerlink" title="1.PC端浏览器"></a>1.PC端浏览器</h4><p>浏览器</p>
-<p>首次进入页面</p>
-<p>点击按钮，再跳转至百度，再后退</p>
-<p>chrome 58.0.3029.9</p>
-<p>执行ready→load→pageshow</p>
-<p>重新执行ready→load→pageshow 按钮颜色消失 页面相当于重新刷新了</p>
-<p>IE789</p>
-<p>执行ready→load</p>
-<p>重新执行ready→load 按钮颜色消失 页面相当于重新刷新了 pageshow不兼容IE10-</p>
-<p>firefox 53.0.2</p>
-<p>执行ready→load→pageshow</p>
-<p>重新执行ready→load→pageshow 按钮颜色消失 页面相当于重新刷新了</p>
-<p>QQBrowser 9.6</p>
-<p>执行ready→load→pageshow</p>
-<p>重新执行ready→load→pageshow 按钮颜色消失 页面相当于重新刷新了</p>
-<p>360Browser 8.1.1.254</p>
-<p>执行ready→load→pageshow</p>
-<p>重新执行ready→load→pageshow 按钮颜色消失 页面相当于重新刷新了</p>
-<p>Safari 5.1.7（没mac，用的很早版本的windowsafari）</p>
-<p>执行ready→load→pageshow</p>
-<p>新增→pagehide→pageshow 按钮颜色红色 引用了缓存（event.persisted == true）</p>
-<p><img src="https://images2015.cnblogs.com/blog/1091419/201705/1091419-20170508161309816-507695064.png" alt="safari"></p>
-<h4 id="PC端总结：现代的PC浏览器后退后基本都是重新执行load，对页面重新进行一次加载，所以不会有上面的验证码不刷新的问题，由于穷屌没有mac电脑，只下载了很久之前的safari浏览器，测试结果只做参考；"><a href="#PC端总结：现代的PC浏览器后退后基本都是重新执行load，对页面重新进行一次加载，所以不会有上面的验证码不刷新的问题，由于穷屌没有mac电脑，只下载了很久之前的safari浏览器，测试结果只做参考；" class="headerlink" title="PC端总结：现代的PC浏览器后退后基本都是重新执行load，对页面重新进行一次加载，所以不会有上面的验证码不刷新的问题，由于穷屌没有mac电脑，只下载了很久之前的safari浏览器，测试结果只做参考；"></a>PC端总结：现代的PC浏览器后退后基本都是重新执行load，对页面重新进行一次加载，所以不会有上面的验证码不刷新的问题，由于穷屌没有mac电脑，只下载了很久之前的safari浏览器，测试结果只做参考；</h4><h4 id="2-移动端浏览器-（安卓端）-测试机型小米5S-iphone4s"><a href="#2-移动端浏览器-（安卓端）-测试机型小米5S-iphone4s" class="headerlink" title="2.移动端浏览器 （安卓端）,测试机型小米5S,iphone4s"></a>2.移动端浏览器 （安卓端）,测试机型小米5S,iphone4s</h4><p>浏览器</p>
-<p>首次进入页面</p>
-<p>点击按钮，再跳转至百度，再后退</p>
-<p>UCBrowser</p>
-<p>执行ready→load→pageshow</p>
-<p>新增→pagehide→pageshow 按钮颜色红色 引用了缓存（event.persisted == true）</p>
-<p>QQBrowser</p>
-<p>执行ready→load→pageshow</p>
-<p>新增→pagehide→pageshow 按钮颜色红色 引用了缓存（event.persisted == true）</p>
-<p>QQ内置浏览器</p>
-<p>执行ready→load→pageshow</p>
-<p>重新执行ready→load→pageshow 按钮颜色消失 页面相当于重新刷新了</p>
-<p>360Browser</p>
-<p>执行ready→load→pageshow</p>
-<p>无触发事件，按钮颜色红色 引用了缓存（event.persisted == true）</p>
-<p>chorme</p>
-<p>执行ready→load→pageshow</p>
-<p>重新执行ready→load→pageshow 按钮颜色消失 页面相当于重新刷新了</p>
-<p>微信内置</p>
-<p>执行ready→load→pageshow</p>
-<p>重新执行ready→load→pageshow 按钮颜色消失 页面相当于重新刷新了</p>
-<p>小米自带</p>
-<p>执行ready→load→pageshow</p>
-<p>无触发事件，按钮颜色红色 引用了缓存（event.persisted == true）</p>
-<p>safari</p>
-<p>执行ready→load→pageshow</p>
-<p>新增→pagehide→pageshow 按钮颜色红色 引用了缓存（event.persisted == true）</p>
-<p>效果图：选了三种类型各一个</p>
-<p>刷新页面类型</p>
-<p>不刷新不执行类型</p>
-<p>不刷新执行事件类型（理想型）</p>
-<pre><code>这就很头疼了，三种不同的情况，对于chrome和UC类型的情况，对于我的回退验证码刷新问题，很容易处理，最麻烦的360类型的，但是。。。发现了更蛋疼的情况了：
-后退不reload，不执行pageshow的浏览器在公司的一个项目中，居然能实现后退刷新。。。。 同一段测试代码，发到项目服务器上，是可以后退刷新，
-但是，在我自己的虚拟主机中却不行，南蝶？是因为请求头部设置吗？？？ 先挖个坑在这，等我去好好了解一下PHP 和 http请求 再回来战！
-</code></pre><hr>
-<h3 id="二、如何在前进、后退后执行js"><a href="#二、如何在前进、后退后执行js" class="headerlink" title="二、如何在前进、后退后执行js"></a>二、如何在前进、后退后执行js</h3><p>百度、google类似问题，最多的解决方法：pageshow;</p>
-<blockquote>
-<p>Firefox和Opera有一个新特性，名叫“往返缓存”（back-forward cache，或bfcache），可以在用户使用浏览器的“后退”和“前进”按钮时加快页面的转换速度。<br>这个缓存中不仅保存着页面数据，还保存了DOM和JavaScript的状态；实际上是将整个页面都保存在了内存里。<br>如果页面位于bfcache中，那么再次打开该页面就不会触发load事件。<br>尽管由于内存中保存了整个页面的状态，不触发load事件也不应该会导致什么问题，但为了更形象地说明bfcache的行为，Firefox还是提供了一些新事件。<br>第一个事件就是pageshow，这个事件在页面显示时触发，无论页面是否来自bfcache。在重新加载页面中，pageshow会在load事件触发后触发；<br>而对于bfcache中的页面，pageshow会在页面状态完全恢复的那一刻触发。另外要注意的是，虽然这个事件的目标是document，但必须将其事件处理程序添加到window。</p>
-</blockquote>
-
-          
+<h4 id="原文-https-www-cnblogs-com-milo-wjh-p-6811868-html"><a href="#原文-https-www-cnblogs-com-milo-wjh-p-6811868-html" class="headerlink" title="原文:https://www.cnblogs.com/milo-wjh/p/6811868.html"></a>原文:<a href="https://www.cnblogs.com/milo-wjh/p/6811868.html" target="_blank" rel="noopener">https://www.cnblogs.com/milo-wjh/p/6811868.html</a></h4><h2 id="发现了问题，首先分析一下呗："><a href="#发现了问题，首先分析一下呗：" class="headerlink" title="发现了问题，首先分析一下呗："></a><strong>发现了问题，首先分析一下呗：</strong></h2><h2 id="浏览器前进、后退使用机制"><a href="#浏览器前进、后退使用机制" class="headerlink" title="*浏览器前进、后退使用机制"></a>*浏览器前进、后退使用机制</h2><h2 id="如何在前进、后退后执行js"><a href="#如何在前进、后退后执行js" class="headerlink" title="*如何在前进、后退后执行js"></a>*如何在前进、后退后执行js</h2>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/02/02/19.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1193,7 +1131,7 @@ window.addEventListener(&apos;pagehide&apos;, function(event) {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://cookyg.github.io/2019/02/02/e5-9c-a8vue-e4-b8-ad-e7-9b-91-e5-90-acwindow-e4-ba-8b-e4-bb-b6.html">
+    <link itemprop="mainEntityOfPage" href="https://cookyg.github.io/2019/02/02/08.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hao Pu">
@@ -1212,7 +1150,7 @@ window.addEventListener(&apos;pagehide&apos;, function(event) {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/02/e5-9c-a8vue-e4-b8-ad-e7-9b-91-e5-90-acwindow-e4-ba-8b-e4-bb-b6.html" itemprop="url">在vue中监听window事件</a></h1>
+                <a class="post-title-link" href="/2019/02/02/08.html" itemprop="url">在vue中监听window事件</a></h1>
         
 
         <div class="post-meta">
@@ -1317,7 +1255,9 @@ window.addEventListener(&apos;pagehide&apos;, function(event) {
       
         
           
-            <pre><code>methods: {
+            <meta name="referrer" content="no-referrer">
+
+<pre><code>methods: {
   handleWinFocus() {
     alert(&apos;you are in page now&apos;);
   },
@@ -1376,7 +1316,7 @@ beforeDestroy() {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://cookyg.github.io/2019/02/02/e5-be-ae-e4-bf-a1-e5-85-ac-e4-bc-97-e5-8f-b7-e5-85-b3-e6-b3-a8-e5-90-8e-e8-bf-94-e5-9b-9e-ef-bc-8c-e5-a6-82-e4-bd-95-e5-88-a4-e6-96-ad-e5-b7-b2-e7-bb-8f-e8-bf-94-e5-9b-9e-e5-88-b0-e8-87-aa-e5-b7-b1.html">
+    <link itemprop="mainEntityOfPage" href="https://cookyg.github.io/2019/02/02/15.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hao Pu">
@@ -1395,7 +1335,7 @@ beforeDestroy() {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/02/e5-be-ae-e4-bf-a1-e5-85-ac-e4-bc-97-e5-8f-b7-e5-85-b3-e6-b3-a8-e5-90-8e-e8-bf-94-e5-9b-9e-ef-bc-8c-e5-a6-82-e4-bd-95-e5-88-a4-e6-96-ad-e5-b7-b2-e7-bb-8f-e8-bf-94-e5-9b-9e-e5-88-b0-e8-87-aa-e5-b7-b1.html" itemprop="url">微信公众号关注后返回，如何判断已经返回到自己的页面？</a></h1>
+                <a class="post-title-link" href="/2019/02/02/15.html" itemprop="url">微信公众号关注后返回，如何判断已经返回到自己的页面？</a></h1>
         
 
         <div class="post-meta">
@@ -1500,7 +1440,9 @@ beforeDestroy() {
       
         
           
-            <p>识别二维码之后，页面就自动去了公众号关注的页面，关注完成后，按物理回退按键回退到显示二维码的页面，这个时候用户信息显示还是未关注。之前一直想不通怎么判断回到了这个页面，监听回退事件也不行，因为回退的是二维码的关注页面。结果忘了window的focus事件，监听触发这个事件就可以了。触发这个事件的时候判断是不是显示了二维码图片，如果是就重新加载入口的地址，重新获取用户信息是不是已经关注。 <code>window.addEventListener(&#39;focus&#39;, function(){});</code></p>
+            <meta name="referrer" content="no-referrer">
+
+<p>识别二维码之后，页面就自动去了公众号关注的页面，关注完成后，按物理回退按键回退到显示二维码的页面，这个时候用户信息显示还是未关注。之前一直想不通怎么判断回到了这个页面，监听回退事件也不行，因为回退的是二维码的关注页面。结果忘了window的focus事件，监听触发这个事件就可以了。触发这个事件的时候判断是不是显示了二维码图片，如果是就重新加载入口的地址，重新获取用户信息是不是已经关注。 <code>window.addEventListener(&#39;focus&#39;, function(){});</code></p>
 
           
         
@@ -1672,300 +1614,17 @@ beforeDestroy() {
 
       
         
-          
-            <p>原文出处： <a href="https://css-tricks.com/using-mixins-vue-js/" target="_blank" rel="noopener">SARAH DRASNER</a>   译文出处：<a href="http://zcfy.cc/article/using-mixins-in-vue-js-css-tricks-3257.html" target="_blank" rel="noopener">众成翻译</a>   </p>
-<p>有一种很常见的情况：有两个非常相似的组件，他们的基本功能是一样的，但他们之间又存在着足够的差异性，此时的你就像是来到了一个分岔路口：我是把它拆分成两个不同的组件呢？还是保留为一个组件，然后通过props传值来创造差异性从而进行区分呢？</p>
-<p>两种解决方案都不够完美：如果拆分成两个组件，你就不得不冒着一旦功能变动就要在两个文件中更新代码的风险，这违背了 DRY 原则。反之，太多的props传值会很快变得混乱不堪，从而迫使维护者（即便这个人是你）在使用组件的时候必须理解一大段的上下文，拖慢写码速度。</p>
-<p>使用Mixin。Vue 中的Mixin对编写函数式风格的代码很有用，因为函数式编程就是通过减少移动的部分让代码更好理解（引自 <a href="https://twitter.com/mfeathers/status/29581296216?lang=en" target="_blank" rel="noopener">Michael Feathers</a> ）。Mixin允许你封装一块在应用的其他组件中都可以使用的函数。如果使用姿势得当，他们不会改变函数作用域外部的任何东西，因此哪怕执行多次，只要是同样的输入你总是能得到一样的值，真的很强大！</p>
-<h3 id="基础实例"><a href="#基础实例" class="headerlink" title="基础实例"></a>基础实例</h3><p>我们有一对不同的组件，它们的作用是通过切换状态（Boolean类型）来展示或者隐藏模态框或提示框。这些提示框和模态框除了功能相似以外，没有其他共同点：它们看起来不一样，用法不一样，但是逻辑一样。</p>
-<p>JavaScript</p>
-<p>// 模态框 const Modal = { template: ‘#modal’, data() { return { isShowing: false } }, methods: { toggleShow() { this.isShowing = !this.isShowing; } }, components: { appChild: Child } } // 提示框 const Tooltip = { template: ‘#tooltip’, data() { return { isShowing: false } }, methods: { toggleShow() { this.isShowing = !this.isShowing; } }, components: { appChild: Child } }</p>
-<p>1</p>
-<p>2</p>
-<p>3</p>
-<p>4</p>
-<p>5</p>
-<p>6</p>
-<p>7</p>
-<p>8</p>
-<p>9</p>
-<p>10</p>
-<p>11</p>
-<p>12</p>
-<p>13</p>
-<p>14</p>
-<p>15</p>
-<p>16</p>
-<p>17</p>
-<p>18</p>
-<p>19</p>
-<p>20</p>
-<p>21</p>
-<p>22</p>
-<p>23</p>
-<p>24</p>
-<p>25</p>
-<p>26</p>
-<p>27</p>
-<p>28</p>
-<p>29</p>
-<p>30</p>
-<p>31</p>
-<p>32</p>
-<p>33</p>
-<p>34</p>
-<p>35</p>
-<p>// 模态框</p>
-<p>const  Modal  =  {</p>
-<p>template:  ‘#modal’,</p>
-<p>data()  {</p>
-<p>return  {</p>
-<p>isShowing:  false</p>
-<p>}</p>
-<p>},</p>
-<p>methods:  {</p>
-<p>toggleShow()  {</p>
-<p>this.isShowing  =  !this.isShowing;</p>
-<p>}</p>
-<p>},</p>
-<p>components:  {</p>
-<p>appChild:  Child</p>
-<p>}</p>
-<p>}</p>
-<p>// 提示框</p>
-<p>const  Tooltip  =  {</p>
-<p>template:  ‘#tooltip’,</p>
-<p>data()  {</p>
-<p>return  {</p>
-<p>isShowing:  false</p>
-<p>}</p>
-<p>},</p>
-<p>methods:  {</p>
-<p>toggleShow()  {</p>
-<p>this.isShowing  =  !this.isShowing;</p>
-<p>}</p>
-<p>},</p>
-<p>components:  {</p>
-<p>appChild:  Child</p>
-<p>}</p>
-<p>}</p>
-<p>我们可以在这里提取逻辑并创建可以被重用的项：</p>
-<p>JavaScript</p>
-<p>const toggle = { data() { return { isShowing: false } }, methods: { toggleShow() { this.isShowing = !this.isShowing; } } } const Modal = { template: ‘#modal’, mixins: [toggle], components: { appChild: Child } }; const Tooltip = { template: ‘#tooltip’, mixins: [toggle], components: { appChild: Child } };</p>
-<p>1</p>
-<p>2</p>
-<p>3</p>
-<p>4</p>
-<p>5</p>
-<p>6</p>
-<p>7</p>
-<p>8</p>
-<p>9</p>
-<p>10</p>
-<p>11</p>
-<p>12</p>
-<p>13</p>
-<p>14</p>
-<p>15</p>
-<p>16</p>
-<p>17</p>
-<p>18</p>
-<p>19</p>
-<p>20</p>
-<p>21</p>
-<p>22</p>
-<p>23</p>
-<p>24</p>
-<p>25</p>
-<p>26</p>
-<p>27</p>
-<p>28</p>
-<p>const  toggle  =  {</p>
-<p>data()  {</p>
-<p>return  {</p>
-<p>isShowing:  false</p>
-<p>}</p>
-<p>},</p>
-<p>methods:  {</p>
-<p>toggleShow()  {</p>
-<p>this.isShowing  =  !this.isShowing;</p>
-<p>}</p>
-<p>}</p>
-<p>}</p>
-<p>const  Modal  =  {</p>
-<p>template:  ‘#modal’,</p>
-<p>mixins:  [toggle],</p>
-<p>components:  {</p>
-<p>appChild:  Child</p>
-<p>}</p>
-<p>};</p>
-<p>const  Tooltip  =  {</p>
-<p>template:  ‘#tooltip’,</p>
-<p>mixins:  [toggle],</p>
-<p>components:  {</p>
-<p>appChild:  Child</p>
-<p>}</p>
-<p>};</p>
-<p>你可以点击这里，查看 Sarah Drasner(<a href="https://codepen.io/sdras" target="_blank" rel="noopener">@sdras</a>) 在<a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>上编写 <a href="https://codepen.io/sdras/pen/101a5d737b31591e5801c60b666013db/" target="_blank" rel="noopener">Mixin</a> 的例子</p>
-<p>为了更容易理解Mixin，这个例子故意编写得简单一些。真实应用中Mixin有如下的应用，但是它的作用也不仅限于此：获取视窗和组件的尺寸，采集特定的鼠标事件和图表的基本元素。Paul Pflugradt 有一个关于 <a href="https://github.com/paulpflug/vue-mixins" target="_blank" rel="noopener">Vue Mixins 的优秀项目</a>，值得一提的是它是用 coffeescript 编写的。</p>
-<h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><p>上面这个codepen的例子并没有告诉我们在一个真实的应用中如何使用Mixin，所以我们看看下面的这个。</p>
-<p>你可以按照你喜欢的任意方式设置你的目录结构，但为了结构规整我喜欢新建一个<code>mixin</code>目录。我们创建的这个文件含有<code>.js</code>扩展名（跟<code>.vue</code>相对，就像我们的其他文件），为了使用Mixin我们需要输出一个对象。</p>
-<p><img src="http://jbcdn2.b0.upaiyun.com/2017/07/df4bdb49356f53506124dbd7509a7195.jpg" alt="directory structure shows mixins in a folder in components directory"></p>
-<p>接着我们可以在Modal.vue使用这样的写法，来引入这个Mixin:</p>
-<p>JavaScript</p>
-<p>import Child from ‘./Child’ import { toggle } from ‘./mixins/toggle’ export default { name: ‘modal’, mixins: [toggle], components: { appChild: Child } }</p>
-<p>1</p>
-<p>2</p>
-<p>3</p>
-<p>4</p>
-<p>5</p>
-<p>6</p>
-<p>7</p>
-<p>8</p>
-<p>9</p>
-<p>10</p>
-<p>import Child  from  ‘./Child’</p>
-<p>import  {  toggle  }  from  ‘./mixins/toggle’</p>
-<p>export  default  {</p>
-<p>name:  ‘modal’,</p>
-<p>mixins:  [toggle],</p>
-<p>components:  {</p>
-<p>appChild:  Child</p>
-<p>}</p>
-<p>}</p>
-<p>即便我们使用的是一个对象而不是一个组件，生命周期函数对我们来说仍然是可用的，理解这点很重要。我们也可以这里使用<code>mounted()</code>钩子函数，它将被应用于组件的生命周期上。这种工作方式真的很灵活也很强大。</p>
-<h3 id="合并"><a href="#合并" class="headerlink" title="合并"></a>合并</h3><p>在下面的这个例子，我们可以看到，我们不仅仅是实现了自己想要的功能，并且Mixin中的生命周期的钩子也同样是可用的。因此，当我们在组件上应用Mixin的时候，有可能组件与Mixin中都定义了相同的生命周期钩子，这时候钩子的执行顺序的问题凸显了出来。默认Mixin上会首先被注册，组件上的接着注册，这样我们就可以在组件中按需要重写Mixin中的语句。<strong>组件拥有最终发言权。</strong>当发生冲突并且这个组件就不得不“决定”哪个胜出的时候，这一点就显得特别重要，否则，所有的东西都被放在一个数组当中执行，Mixin将要被先推入数组，其次才是组件。</p>
-<p>JavaScript</p>
-<p>//mixin const hi = { mounted() { console.log(‘hello from mixin!’) } } //vue instance or component new Vue({ el: ‘#app’, mixins: [hi], mounted() { console.log(‘hello from Vue instance!’) } }); //Output in console &gt; hello from mixin! &gt; hello from Vue instance!</p>
-<p>1</p>
-<p>2</p>
-<p>3</p>
-<p>4</p>
-<p>5</p>
-<p>6</p>
-<p>7</p>
-<p>8</p>
-<p>9</p>
-<p>10</p>
-<p>11</p>
-<p>12</p>
-<p>13</p>
-<p>14</p>
-<p>15</p>
-<p>16</p>
-<p>17</p>
-<p>18</p>
-<p>19</p>
-<p>//mixin</p>
-<p>const  hi  =  {</p>
-<p>mounted()  {</p>
-<p>console.log(‘hello from mixin!’)</p>
-<p>}</p>
-<p>}</p>
-<p>//vue instance or component</p>
-<p>new  Vue({</p>
-<p>el:  ‘#app’,</p>
-<p>mixins:  [hi],</p>
-<p>mounted()  {</p>
-<p>console.log(‘hello from Vue instance!’)</p>
-<p>}</p>
-<p>});</p>
-<p>//Output in console</p>
-<blockquote>
-<p> hello from mixin!</p>
-</blockquote>
-<blockquote>
-<p> hello from Vue instance!</p>
-</blockquote>
-<p>如果这两个冲突了，我们看看 Vue实例或组件是如何决定输赢的：</p>
-<p>JavaScript</p>
-<p>//mixin const hi = { methods: { sayHello: function() { console.log(‘hello from mixin!’) } }, mounted() { this.sayHello() } } //vue instance or component new Vue({ el: ‘#app’, mixins: [hi], methods: { sayHello: function() { console.log(‘hello from Vue instance!’) } }, mounted() { this.sayHello() } }) // Output in console &gt; hello from Vue instance! &gt; hello from Vue instance!</p>
-<p>1</p>
-<p>2</p>
-<p>3</p>
-<p>4</p>
-<p>5</p>
-<p>6</p>
-<p>7</p>
-<p>8</p>
-<p>9</p>
-<p>10</p>
-<p>11</p>
-<p>12</p>
-<p>13</p>
-<p>14</p>
-<p>15</p>
-<p>16</p>
-<p>17</p>
-<p>18</p>
-<p>19</p>
-<p>20</p>
-<p>21</p>
-<p>22</p>
-<p>23</p>
-<p>24</p>
-<p>25</p>
-<p>26</p>
-<p>27</p>
-<p>28</p>
-<p>29</p>
-<p>//mixin</p>
-<p>const  hi  =  {</p>
-<p>methods:  {</p>
-<p>sayHello:  function()  {</p>
-<p>console.log(‘hello from mixin!’)</p>
-<p>}</p>
-<p>},</p>
-<p>mounted()  {</p>
-<p>this.sayHello()</p>
-<p>}</p>
-<p>}</p>
-<p>//vue instance or component</p>
-<p>new  Vue({</p>
-<p>el:  ‘#app’,</p>
-<p>mixins:  [hi],</p>
-<p>methods:  {</p>
-<p>sayHello:  function()  {</p>
-<p>console.log(‘hello from Vue instance!’)</p>
-<p>}</p>
-<p>},</p>
-<p>mounted()  {</p>
-<p>this.sayHello()</p>
-<p>}</p>
-<p>})</p>
-<p>// Output in console</p>
-<blockquote>
-<p> hello from Vue instance!</p>
-</blockquote>
-<blockquote>
-<p> hello from Vue instance!</p>
-</blockquote>
-<p>你可能已经注意到这有两个<code>console.log</code>而不是一个——这是因为第一个函数被调用时，没有被销毁，它只是被重写了。我们在这里调用了两次<code>sayHello()</code>函数。</p>
-<h3 id="全局Mixin"><a href="#全局Mixin" class="headerlink" title="全局Mixin"></a>全局Mixin</h3><p>当我们使用“全局”来描述Mixin的时候，我们并不是说Mixin能够像filter，在每个组件都能被访问到。只是我们能够在组件通过<code>mixins:</code></p>
-<p>访问组件上的Mixin对象。</p>
-<p>全局Mixin被注册到了<em>每个单一组件上</em>。因此，它们的使用场景_极其_有限并且在使用的时候我们需要非常小心。一个我能想到的用途就是类似于插件，你需要赋予它访问所有东西的权限。但即使在这种情况下，我也对你正在做事情的充满警惕，尤其当你打算为应用增加通能的时候，这样做可能对你来说是个潘多拉的盒子。</p>
-<p>为了创建一个全局实例，我们可以把它放在Vue实例之上。在一个典型的 Vue-cli 初始化的项目中，它可能在你的<code>main.js</code>文件中。</p>
-<p>JavaScript</p>
-<p>Vue.mixin({ mounted() { console.log(‘hello from mixin!’) } }) new Vue({ … })</p>
-<p>1</p>
-<p>2</p>
-<p>3</p>
-<p>4</p>
-<p>5</p>
-<p>6</p>
-<p>7</p>
-<p>8</p>
-<p>9</p>
-<p>Vue.mixin({</p>
-<p>mounted()  {</p>
-<p>console.log(‘hello from mixin!’)</p>
-<p>}</p>
-<p>})</p>
-<p>new  Vue({</p>
-<p>…</p>
-<p>})</p>
+          <meta name="referrer" content="no-referrer">
 
-          
+<p>原文出处： <a href="https://css-tricks.com/using-mixins-vue-js/" target="_blank" rel="noopener">SARAH DRASNER</a>   译文出处：<a href="http://zcfy.cc/article/using-mixins-in-vue-js-css-tricks-3257.html" target="_blank" rel="noopener">众成翻译</a>   </p>
+<p>有一种很常见的情况：有两个非常相似的组件，他们的基本功能是一样的，但他们之间又存在着足够的差异性，此时的你就像是来到了一个分岔路口：我是把它拆分成两个不同的组件呢？还是保留为一个组件，然后通过props传值来创造差异性从而进行区分呢？</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/01/17/vue-mixin.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2012,7 +1671,7 @@ beforeDestroy() {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://cookyg.github.io/2018/12/12/e5-be-ae-e4-bf-a1-e6-b5-8f-e8-a7-88-e5-99-a8-e9-98-b2-e6-ad-a2-e9-a1-b5-e9-9d-a2-e5-9b-9e-e9-80-80.html">
+    <link itemprop="mainEntityOfPage" href="https://cookyg.github.io/2018/12/12/16.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hao Pu">
@@ -2031,7 +1690,7 @@ beforeDestroy() {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/12/e5-be-ae-e4-bf-a1-e6-b5-8f-e8-a7-88-e5-99-a8-e9-98-b2-e6-ad-a2-e9-a1-b5-e9-9d-a2-e5-9b-9e-e9-80-80.html" itemprop="url">微信浏览器防止页面回退</a></h1>
+                <a class="post-title-link" href="/2018/12/12/16.html" itemprop="url">微信浏览器防止页面回退</a></h1>
         
 
         <div class="post-meta">
@@ -2136,15 +1795,9 @@ beforeDestroy() {
       
         
           
-            <script>
+            <meta name="referrer" content="no-referrer">
 
-           history.pushState(null, null, document.URL);
-
-          window.addEventListener('popstate', function () {  
-               history.pushState(null, null, document.URL);  
-          });
-
-</script>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line"></span><br><span class="line">           history.pushState(null, null, document.URL);</span><br><span class="line"></span><br><span class="line">          window.addEventListener(&apos;popstate&apos;, function () &#123;  </span><br><span class="line">               history.pushState(null, null, document.URL);  </span><br><span class="line">          &#125;);</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
           
         
       
@@ -2192,7 +1845,7 @@ beforeDestroy() {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://cookyg.github.io/2018/11/27/js-e9-aa-8c-e8-af-81-e6-98-af-e5-90-a6-e6-9c-89-e6-95-88-e6-97-a5-e6-9c-9f.html">
+    <link itemprop="mainEntityOfPage" href="https://cookyg.github.io/2018/11/27/32.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hao Pu">
@@ -2211,7 +1864,7 @@ beforeDestroy() {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/27/js-e9-aa-8c-e8-af-81-e6-98-af-e5-90-a6-e6-9c-89-e6-95-88-e6-97-a5-e6-9c-9f.html" itemprop="url">js 验证是否有效日期</a></h1>
+                <a class="post-title-link" href="/2018/11/27/32.html" itemprop="url">js 验证是否有效日期</a></h1>
         
 
         <div class="post-meta">
@@ -2315,183 +1968,16 @@ beforeDestroy() {
 
       
         
-          
-            <h1 id="js-验证是否有效日期"><a href="#js-验证是否有效日期" class="headerlink" title="js 验证是否有效日期"></a><strong>js 验证是否有效日期</strong></h1><p>通常来说，javascript验证日期的有效性可以通过正则判断 但正则表达式无法精准验证日期的有效性，你无法通过正则表达式判断出1900-02-29是非法日期而2000-02-29是合法日期，而且正则表达式匹配起来比较繁琐。 要想精确验证，最容易想到的方法就是通过月份判断日期是否合法(1~28/29/30/31),你可以用一个数组表示每月的天数，如daysInMonth=[31,28,31,30,31,30,31,31,30,31,30,31],但你会发现daysInMonth[1]这个值可能是28或29，你又要写一个判断闰年的函数来解决这个问题…… 这至少要花费20行以上的代码来完成这件事，而通过javascript中的Date对象，我们只需要1行代码即可完成上述功能。 function check(date){ return (new Date(date).getDate()==date.substring(date.length-2)); } date为一个待检查的类日期字符串（如2013-01-01、2013/01/01、2013/01/32、2013/02/29）,不论这个字符串是否正确 通过新建的Date对象(new Date(date))，可以识别出该日期是否正确，如果不正确则返回Invalid Date 但这样会有一个bug，当日期的值在1-31之间，new Date总返回一个新的对象，不论该月份是否存在这个日期(如2013-02-30将返回日期对象Sat Mar 02 2013 08:00:00 GMT+0800 (中国标准时间))，返回结果是下个月的日期而不报错 所以要用getDate()方法获取日期(new Date(‘2013-02-30’)对象的getDate()方法将返回2) date.substring(date.length-2)会获取到字符串最后两位也就是日期的部分，这与Date对象的日期部分做比较，如果相等则说明日期有效，否则为无效日期 如果日期无效则’==’左边值为NaN，右边无论是什么(‘’、null、undefined、NaN等)结果都为false</p>
+          <meta name="referrer" content="no-referrer">
 
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://cookyg.github.io/2018/11/09/javascript-js-e8-ba-ab-e4-bb-bd-e8-af-81-e6-a0-a1-e9-aa-8c.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Hao Pu">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="CookyGG的个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/09/javascript-js-e8-ba-ab-e4-bb-bd-e8-af-81-e6-a0-a1-e9-aa-8c.html" itemprop="url">javascript js 身份证校验</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-09T14:39:46+08:00">
-                2018-11-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/js/" itemprop="url" rel="index">
-                    <span itemprop="name">js</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>var idcard = function (code) { //身份证号合法性验证 //支持15位和18位身份证号 //支持地址编码、出生日期、校验位验证 var city = { 11: “北京”, 12: “天津”, 13: “河北”, 14: “山西”, 15: “内蒙古”, 21: “辽宁”, 22: “吉林”, 23: “黑龙江 “, 31: “上海”, 32: “江苏”, 33: “浙江”, 34: “安徽”, 35: “福建”, 36: “江西”, 37: “山东”, 41: “河南”, 42: “湖北 “, 43: “湖南”, 44: “广东”, 45: “广西”, 46: “海南”, 50: “重庆”, 51: “四川”, 52: “贵州”, 53: “云南”, 54: “西藏 “, 61: “陕西”, 62: “甘肃”, 63: “青海”, 64: “宁夏”, 65: “新疆”, 71: “台湾”, 81: “香港”, 82: “澳门”, 91: “国外 “ }; //var row={ // ‘pass’:true, // ‘msg’:’验证成功’ //}; var row = true; if (!code || !/^\d{6}(18|19|20)?\d{2}(0[1-9]|1[012])(0[1-9]|[12]\d|3[01])\d{3}(\d|[xX])$/.test(code)) { //row={ // ‘pass’:false, // ‘msg’:’身份证号格式错误’ //}; row = false; } else if (!city[code.substr(0, 2)]) { //row={ // ‘pass’:false, // ‘msg’:’身份证号地址编码错误’ //}; row = false; } else { //18位身份证需要验证最后一位校验位 if (code.length == 18) { code = code.split(‘’); //∑(ai×Wi)(mod 11) //加权因子 var factor = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2]; //校验位 var parity = [1, 0, ‘X’, 9, 8, 7, 6, 5, 4, 3, 2]; var sum = 0; var ai = 0; var wi = 0; for (var i = 0; i &lt; 17; i++) { ai = code[i]; wi = factor[i]; sum += ai * wi; } if (parity[sum % 11] != code[17].toUpperCase()) { //row={ // ‘pass’:false, // ‘msg’:’身份证号校验位错误’ //}; row = false; } } } return row; };</p>
-
-          
+<h1 id="js-验证是否有效日期"><a href="#js-验证是否有效日期" class="headerlink" title="js 验证是否有效日期"></a><strong>js 验证是否有效日期</strong></h1>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/11/27/32.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2529,7 +2015,7 @@ beforeDestroy() {
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2575,7 +2061,7 @@ beforeDestroy() {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">41</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2693,8 +2179,6 @@ beforeDestroy() {
   
 </div>
 
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
 
 

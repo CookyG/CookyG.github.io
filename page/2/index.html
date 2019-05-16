@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://cookyg.github.io/2018/08/23/e4-b8-80-e4-ba-9b-javascript-e4-b8-ad-e7-9a-84-e4-bb-a3-e7-a0-81-e5-b0-8f-e6-8a-80-e5-b7-a7.html">
+    <link itemprop="mainEntityOfPage" href="https://cookyg.github.io/2018/11/09/27.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hao Pu">
@@ -272,7 +272,181 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/23/e4-b8-80-e4-ba-9b-javascript-e4-b8-ad-e7-9a-84-e4-bb-a3-e7-a0-81-e5-b0-8f-e6-8a-80-e5-b7-a7.html" itemprop="url">一些 JavaScript 中的代码小技巧</a></h1>
+                <a class="post-title-link" href="/2018/11/09/27.html" itemprop="url">javascript js 身份证校验</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-09T14:39:46+08:00">
+                2018-11-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/js/" itemprop="url" rel="index">
+                    <span itemprop="name">js</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <meta name="referrer" content="no-referrer">
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">var isidcard = function (code) &#123;</span><br><span class="line">    //var reNum = /^[1-9]\d&#123;5&#125;[1-9]\d&#123;3&#125;((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d&#123;3&#125;([0-9]|X)$/;</span><br><span class="line">    //return (reNum.test(num))</span><br><span class="line">    //身份证号合法性验证</span><br><span class="line">    //支持15位和18位身份证号</span><br><span class="line">    //支持地址编码、出生日期、校验位验证</span><br><span class="line">    var city = &#123; 11: &quot;北京&quot;, 12: &quot;天津&quot;, 13: &quot;河北&quot;, 14: &quot;山西&quot;, 15: &quot;内蒙古&quot;, 21: &quot;辽宁&quot;, 22: &quot;吉林&quot;, 23: &quot;黑龙江 &quot;, 31: &quot;上海&quot;, 32: &quot;江苏&quot;, 33: &quot;浙江&quot;, 34: &quot;安徽&quot;, 35: &quot;福建&quot;, 36: &quot;江西&quot;, 37: &quot;山东&quot;, 41: &quot;河南&quot;, 42: &quot;湖北 &quot;, 43: &quot;湖南&quot;, 44: &quot;广东&quot;, 45: &quot;广西&quot;, 46: &quot;海南&quot;, 50: &quot;重庆&quot;, 51: &quot;四川&quot;, 52: &quot;贵州&quot;, 53: &quot;云南&quot;, 54: &quot;西藏 &quot;, 61: &quot;陕西&quot;, 62: &quot;甘肃&quot;, 63: &quot;青海&quot;, 64: &quot;宁夏&quot;, 65: &quot;新疆&quot;, 71: &quot;台湾&quot;, 81: &quot;香港&quot;, 82: &quot;澳门&quot;, 91: &quot;国外 &quot; &#125;;</span><br><span class="line">    //var row=&#123;</span><br><span class="line">    //    &apos;pass&apos;:true,</span><br><span class="line">    //    &apos;msg&apos;:&apos;验证成功&apos;</span><br><span class="line">    //&#125;;</span><br><span class="line">    var row = true;</span><br><span class="line">    if (!code || !/^\d&#123;6&#125;(18|19|20)?\d&#123;2&#125;(0[1-9]|1[012])(0[1-9]|[12]\d|3[01])\d&#123;3&#125;(\d|[xX])$/.test(code)) &#123;</span><br><span class="line">        //row=&#123;</span><br><span class="line">        //    &apos;pass&apos;:false,</span><br><span class="line">        //    &apos;msg&apos;:&apos;身份证号格式错误&apos;</span><br><span class="line">        //&#125;;</span><br><span class="line">        row = false;</span><br><span class="line">    &#125; else if (!city[code.substr(0, 2)]) &#123;</span><br><span class="line">        //row=&#123;</span><br><span class="line">        //    &apos;pass&apos;:false,</span><br><span class="line">        //    &apos;msg&apos;:&apos;身份证号地址编码错误&apos;</span><br><span class="line">        //&#125;;</span><br><span class="line">        row = false;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        //18位身份证需要验证最后一位校验位</span><br><span class="line">        if (code.length == 18) &#123;</span><br><span class="line">            code = code.split(&apos;&apos;);</span><br><span class="line">            //∑(ai×Wi)(mod 11)</span><br><span class="line">            //加权因子</span><br><span class="line">            var factor = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2];</span><br><span class="line">            //校验位</span><br><span class="line">            var parity = [1, 0, &apos;X&apos;, 9, 8, 7, 6, 5, 4, 3, 2];</span><br><span class="line">            var sum = 0;</span><br><span class="line">            var ai = 0;</span><br><span class="line">            var wi = 0;</span><br><span class="line">            for (var i = 0; i &lt; 17; i++) &#123;</span><br><span class="line">                ai = code[i];</span><br><span class="line">                wi = factor[i];</span><br><span class="line">                sum += ai * wi;</span><br><span class="line">            &#125;</span><br><span class="line">            if (parity[sum % 11] != code[17].toUpperCase()) &#123;</span><br><span class="line">                //row=&#123;</span><br><span class="line">                //    &apos;pass&apos;:false,</span><br><span class="line">                //    &apos;msg&apos;:&apos;身份证号校验位错误&apos;</span><br><span class="line">                //&#125;;</span><br><span class="line">                row = false;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return row;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://cookyg.github.io/2018/08/23/05.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hao Pu">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CookyGG的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/23/05.html" itemprop="url">一些 JavaScript 中的代码小技巧</a></h1>
         
 
         <div class="post-meta">
@@ -376,223 +550,20 @@
 
       
         
-          
-            <h2 id="一些-JavaScript-中的代码小技巧"><a href="#一些-JavaScript-中的代码小技巧" class="headerlink" title="一些 JavaScript 中的代码小技巧"></a>一些 JavaScript 中的代码小技巧</h2><p><strong>·  ·  ·</strong></p>
+          <meta name="referrer" content="no-referrer">
+
+<h2 id="一些-JavaScript-中的代码小技巧"><a href="#一些-JavaScript-中的代码小技巧" class="headerlink" title="一些 JavaScript 中的代码小技巧"></a>一些 JavaScript 中的代码小技巧</h2><p><strong>·  ·  ·</strong></p>
 <h2 id="JSON-stringify"><a href="#JSON-stringify" class="headerlink" title="JSON.stringify"></a><strong>JSON.stringify</strong></h2><p>我们平时经常会用到<code>JSON</code> 对象，比如当我们要实现对象的深拷贝时，我们可以用<code>JSON</code> 对象的<code>JSON.stringify</code>和<code>JSON.parse</code> 来拷贝一个完全一样的对象，而不会对原对象产生任何引用关系。在使用<code>localStorage</code> 时，也会用到它，因为<code>localStorage</code> 只能存储字符串格式的内容，所以，我们在存之前，将数值转换成<code>JSON字符串</code>，取出来用的时候，再转成对象或数组。 对于<code>JSON.stringify</code> 方法，它可以帮我们把一个对象或数组转换成一个<code>JSON字符串</code>。我们通常只会用到它的第一个参数，其实它还有另外两个参数，可以让它实现一些非常好用的功能。 首先来看语法：</p>
 <blockquote>
 <p>JSON.stringify(value[, replacer [, space]])</p>
 </blockquote>
-<p>参数：</p>
-<ul>
-<li>value：将要被序列化的变量的值</li>
-<li>replacer：替代器。可以是函数或者是数组，如果是一个函数，则<code>value</code> 每个属性都要经过这个函数的处理，该函数的返回值就是最后被序列化后的值。如果是一个数组，则要求该数组的元素是字符串，且这些元素会被当做<code>value</code> 的键（<code>key</code>）进行匹配，最后序列化的结果，是只包含该数组每个元素为<code>key</code> 的值。</li>
-<li>space：指定输出数值的代码缩进，美化格式之用，可以是数字或者字符串。如果是数字（最大为10）的话，代表每行代码的缩进是多少个空格。如果是字符串的话，该字符串（最多前十个字符）将作显示在每行代码之前。</li>
-</ul>
-<p>这时候，你应该知道了。我们可以用<code>JSON.stringify</code> 来做序列化时的过滤，相当于我们可以自定义<code>JSON.stringify</code> 的解析逻辑。 使用函数过滤并序列化对象：</p>
-<ol>
-<li><code>// 使用“函数”当替代器</code></li>
-<li><code>function replacer(key, value) {</code></li>
-<li><code>if (typeof value === &quot;string&quot;) {</code></li>
-<li><code>return undefined;</code></li>
-<li><code>}</code></li>
-<li><code>return value;</code></li>
-<li><p><code>}</code></p>
-</li>
-<li><p><code>var foo = {</code></p>
-</li>
-<li><code>foundation: &quot;Mozilla&quot;,</code></li>
-<li><code>model: &quot;box&quot;,</code></li>
-<li><code>week: 45,</code></li>
-<li><code>transport: &quot;car&quot;,</code></li>
-<li><code>month: 7</code></li>
-<li><code>};</code></li>
-<li><p><code>var jsonString = JSON.stringify(foo, replacer);</code></p>
-</li>
-<li><p><code>// {&quot;week&quot;:45,&quot;month&quot;:7}</code></p>
-</li>
-</ol>
-<p>使用数组过滤并序列化对象：</p>
-<ol>
-<li><code>// 使用“数组”当替代器</code></li>
-<li><code>const user = {</code></li>
-<li><code>name: &#39;zollero&#39;,</code></li>
-<li><code>nick: &#39;z&#39;,</code></li>
-<li><code>skills: [&#39;JavaScript&#39;, &#39;CSS&#39;, &#39;HTML5&#39;]</code></li>
-<li><code>};</code></li>
-<li><p><code>JSON.stringify(user, [&#39;name&#39;, &#39;skills&#39;], 2);</code></p>
-</li>
-<li><p><code>// &quot;{</code></p>
-</li>
-<li><code>//   &quot;name&quot;: &quot;zollero&quot;,</code></li>
-<li><code>//   &quot;skills&quot;: [</code></li>
-<li><code>//     &quot;JavaScript&quot;,</code></li>
-<li><code>//     &quot;CSS&quot;,</code></li>
-<li><code>//     &quot;HTML5&quot;</code></li>
-<li><code>//   ]</code></li>
-<li><code>// }&quot;</code></li>
-</ol>
-<p>还有一个有意思的东西，是对象的<code>toJSON</code> 属性。 如果一个对象有<code>toJSON</code> 属性，当它被序列化的时候，不会对该对象进行序列化，而是将它的<code>toJSON</code> 方法的返回值进行序列化。 见下面的例子：</p>
-<ol>
-<li><code>var obj = {</code></li>
-<li><code>foo: &#39;foo&#39;,</code></li>
-<li><code>toJSON: function () {</code></li>
-<li><code>return &#39;bar&#39;;</code></li>
-<li><code>}</code></li>
-<li><code>};</code></li>
-<li><code>JSON.stringify(obj);      // &#39;&quot;bar&quot;&#39;</code></li>
-<li><code>JSON.stringify({x: obj}); // &#39;{&quot;x&quot;:&quot;bar&quot;}&#39;</code></li>
-</ol>
-<p><strong>·  ·  ·</strong></p>
-<h2 id="用-Set-来实现数组去重"><a href="#用-Set-来实现数组去重" class="headerlink" title="用 Set 来实现数组去重"></a><strong>用 Set 来实现数组去重</strong></h2><p>在<code>ES6</code> 中，引入了一个新的数据结构类型：<code>Set</code>。而<code>Set</code> 与<code>Array</code> 的结构是很类似的，且<code>Set</code> 和<code>Array</code> 可以相互进行转换。 数组去重，也算是一个比较常见的前端面试题了，方法有很多种，这里不多赘述。下面我们看看用<code>Set</code> 和<code>...（拓展运算符）</code>可以很简单的进行数组去重。</p>
-<ol>
-<li><code>const removeDuplicateItems = arr =&gt; [...new Set(arr)];</code></li>
-<li><code>removeDuplicateItems([42, &#39;foo&#39;, 42, &#39;foo&#39;, true, true]);</code></li>
-<li><code>//=&gt; [42, &quot;foo&quot;, true]</code></li>
-</ol>
-<p><strong>·  ·  ·</strong></p>
-<h2 id="用块级作用域避免命名冲突"><a href="#用块级作用域避免命名冲突" class="headerlink" title="用块级作用域避免命名冲突"></a><strong>用块级作用域避免命名冲突</strong></h2><p>在开发的过程中，通常会遇到命名冲突的问题，就是需要根据场景不同来定义不同的值来赋值给同一个变量。下面介绍一个使用<code>ES6</code> 中的<code>块级作用域</code> 来解决这个问题的方法。 比如，在使用<code>switchcase</code> 时，我们可以这样做：</p>
-<ol>
-<li><code>switch (record.type) {</code></li>
-<li><code>case &#39;added&#39;: {</code></li>
-<li><code>const li = document.createElement(&#39;li&#39;);</code></li>
-<li><code>li.textContent = record.name;</code></li>
-<li><code>li.id = record.id;</code></li>
-<li><code>fragment.appendChild(li);</code></li>
-<li><code>break;</code></li>
-<li><p><code>}</code></p>
-</li>
-<li><p><code>case &#39;modified&#39;: {</code></p>
-</li>
-<li><code>const li = document.getElementById(record.id);</code></li>
-<li><code>li.textContent = record.name;</code></li>
-<li><code>break;</code></li>
-<li><code>}</code></li>
-<li><code>}</code></li>
-</ol>
-<p><strong>·  ·  ·</strong></p>
-<h2 id="函数参数值校验"><a href="#函数参数值校验" class="headerlink" title="函数参数值校验"></a><strong>函数参数值校验</strong></h2><p>我们知道，在<code>ES6</code> 中，为函数增加了参数默认值的特性，可以为参数设定一些默认值，可以让代码更简洁，可维护。 其实，我们可以通过这个特性来做函数参数值的校验。 首先，函数的参数可以是任意类型的值，也可以是函数，比如下面这个：</p>
-<ol>
-<li><code>function fix(a = getA()) {</code></li>
-<li><code>console.log(&#39;a&#39;, a)</code></li>
-<li><p><code>}</code></p>
-</li>
-<li><p><code>function getA() {</code></p>
-</li>
-<li><code>console.log(&#39;get a&#39;)</code></li>
-<li><code>return 2</code></li>
-<li><p><code>}</code></p>
-</li>
-<li><p><code>fix(1);</code></p>
-</li>
-<li><p><code>// a 1</code></p>
-</li>
-<li><p><code>fix();</code></p>
-</li>
-<li><code>// get a</code></li>
-<li><code>// a 2</code></li>
-</ol>
-<p>可以看出，如果在调用<code>fix</code> 时传了参数<code>a</code> ，则不会执行函数<code>getA</code>，只有当不传递参数<code>a</code> 时，才会执行函数<code>getA</code>。 这时候，我们可以利用这一特性，为参数<code>a</code> 添加一个必传的校验，代码如下：</p>
-<ol>
-<li><code>function fix(a = require()) {</code></li>
-<li><code>console.log(&#39;a&#39;, a)</code></li>
-<li><p><code>}</code></p>
-</li>
-<li><p><code>function require() {</code></p>
-</li>
-<li><code>throw new Error(&#39;缺少了参数 a&#39;)</code></li>
-<li><p><code>}</code></p>
-</li>
-<li><p><code>fix(1);</code></p>
-</li>
-<li><p><code>// a 1</code></p>
-</li>
-<li><p><code>fix();</code></p>
-</li>
-<li><code>// Uncaught Error: 缺少了参数 a</code></li>
-</ol>
-<p><strong>·  ·  ·</strong></p>
-<h2 id="用解构赋值过滤对象属性"><a href="#用解构赋值过滤对象属性" class="headerlink" title="用解构赋值过滤对象属性"></a><strong>用解构赋值过滤对象属性</strong></h2><p>在前面我们介绍了使用<code>JSON.stringify</code> 来过滤对象的属性的方法。这里，我们介绍另外一种使用<code>ES6</code> 中的<code>解构赋值</code> 和<code>拓展运算符</code> 的特性来过滤属性的方法。 比如，下面这段示例：</p>
-<ol>
-<li><code>// 我们想过滤掉对象 types 中的 inner 和 outer 属性</code></li>
-<li><code>const { inner, outer, ...restProps } = {</code></li>
-<li><code>inner: &#39;This is inner&#39;,</code></li>
-<li><code>outer: &#39;This is outer&#39;,</code></li>
-<li><code>v1: &#39;1&#39;,</code></li>
-<li><code>v2: &#39;2&#39;,</code></li>
-<li><code>v4: &#39;3&#39;</code></li>
-<li><code>};</code></li>
-<li><code>console.log(restProps);</code></li>
-<li><code>// {v1: &quot;1&quot;, v2: &quot;2&quot;, v4: &quot;3&quot;}</code></li>
-</ol>
-<p><strong>·  ·  ·</strong></p>
-<h2 id="用解构赋值获取嵌套对象的属性"><a href="#用解构赋值获取嵌套对象的属性" class="headerlink" title="用解构赋值获取嵌套对象的属性"></a><strong>用解构赋值获取嵌套对象的属性</strong></h2><p><code>解构赋值</code> 的特性很强大，它可以帮我们从一堆嵌套很深的对象属性中，很方便地拿到我们想要的那一个。比如下面这段代码：</p>
-<ol>
-<li><code>// 通过解构赋值获取嵌套对象的值</code></li>
-<li><code>const car = {</code></li>
-<li><code>model: &#39;bmw 2018&#39;,</code></li>
-<li><code>engine: {</code></li>
-<li><code>v6: true,</code></li>
-<li><code>turbo: true,</code></li>
-<li><code>vin: 12345</code></li>
-<li><code>}</code></li>
-<li><code>};</code></li>
-<li><code>// 这里使用 ES6 中的简单写法，使用 { vin } 替代 { vin: vin }</code></li>
-<li><code>const modalAndVIN = ({ model, engine: { vin }}) =&gt; {</code></li>
-<li><code>console.log(`model: ${model}, vin: ${vin}`);</code></li>
-<li><p><code>}</code></p>
-</li>
-<li><p><code>modalAndVIN(car);</code></p>
-</li>
-<li><code>// &quot;model: bmw 2018, vin: 12345&quot;</code></li>
-</ol>
-<p><strong>·  ·  ·</strong></p>
-<h2 id="合并对象"><a href="#合并对象" class="headerlink" title="合并对象"></a><strong>合并对象</strong></h2><p><code>ES6</code> 中新增的<code>拓展运算符</code>，可以用来解构数组，也可以用来解构对象，它可以将对象中的所有属性展开。 通过这个特性，我们可以做一些对象合并的操作，如下：</p>
-<ol>
-<li><code>// 使用拓展运算符合并对象，在后面的属性会重写前面相同属性的值</code></li>
-<li><code>const obj1 = { a: 1, b: 2, c: 3 };</code></li>
-<li><code>const obj2 = { c: 5, d: 9 };</code></li>
-<li><code>const merged = { ...obj1, ...obj2 };</code></li>
-<li><code>console.log(merged);</code></li>
-<li><p><code>// {a: 1, b: 2, c: 5, d: 9}</code></p>
-</li>
-<li><p><code>const obj3 = { a: 1, b: 2 };</code></p>
-</li>
-<li><code>const obj4 = { c: 3, d: { e: 4, ...obj3 } };</code></li>
-<li><code>console.log(obj4);</code></li>
-<li><code>// {c: 3, d: {a: 1, b: 2, e: 4} }</code></li>
-</ol>
-<p><strong>·  ·  ·</strong></p>
-<h2 id="使用-代替"><a href="#使用-代替" class="headerlink" title="使用 === 代替 =="></a><strong>使用 === 代替 ==</strong></h2><p>在<code>JavaScript</code> 中，<code>===</code> 和<code>==</code> 是有很大的不同的，<code>==</code> 会将两边的变量进行转义，然后将转义后的值进行比较，而<code>===</code> 是严格比较，要求两边的变量不仅值要相同，它们自身的类型也要相同。 <code>JavaScript</code> 经常被调侃成一个神奇的语言，就是因为它的转义的特性，而用<code>==</code> 可能会引入一些深埋的bug。远离 bug，还是要用<code>===</code>：</p>
-<ol>
-<li><code>[10] ==  10 // true</code></li>
-<li><p><code>[10] === 10 // false</code></p>
-</li>
-<li><p><code>&#39;10&#39; ==10 // true</code></p>
-</li>
-<li><p><code>&#39;10&#39; === 10 // false</code></p>
-</li>
-<li><p><code>[]  ==  0 // true</code></p>
-</li>
-<li><p><code>[]  === 0 // false</code></p>
-</li>
-<li><p><code>&#39;&#39; ==false // true</code></p>
-</li>
-<li><code>&#39;&#39; === false // false</code></li>
-</ol>
-<p>当然，在用<code>===</code> 时，也会出问题，比如：</p>
-<ol>
-<li><code>NaN === NaN // false</code></li>
-</ol>
-<p><code>ES6</code> 中提供了一个新的方法：<code>Object.is()</code>，它具有<code>===</code> 的一些特点，而且更好、更准确，在一些特殊场景下变现的更好：</p>
-<ol>
-<li><code>Object.is(0 , &#39; &#39;);         //false</code></li>
-<li><code>Object.is(null, undefined); //false</code></li>
-<li><code>Object.is([1], true);       //false</code></li>
-<li><code>Object.is(NaN, NaN);        //true</code></li>
-</ol>
-<p>下图，是关于<code>==</code>、<code>===</code> 和<code>Object.is</code> 的对比： <img src="https://mmbiz.qpic.cn/mmbiz_png/s1EnB5eYnlW7HqgnC94TicT01udHQdaBiaicOC1VUENgSqMdw7tSDe2g9yKAyqb54ibtklPeszCwGgSibyyliafGkicfQ/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt> <strong>·  ·  ·</strong> 引用： <a href="https://developer.mozilla.org/" target="_blank" rel="noopener">https://developer.mozilla.org/</a> <a href="http://www.jstips.co/" target="_blank" rel="noopener">http://www.jstips.co/</a> <em>- The End -</em></p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/23/05.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -639,7 +610,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://cookyg.github.io/2018/07/02/flex-e5-b8-83-e5-b1-80.html">
+    <link itemprop="mainEntityOfPage" href="https://cookyg.github.io/2018/07/02/26.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hao Pu">
@@ -658,7 +629,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/07/02/flex-e5-b8-83-e5-b1-80.html" itemprop="url">flex布局</a></h1>
+                <a class="post-title-link" href="/2018/07/02/26.html" itemprop="url">flex布局</a></h1>
         
 
         <div class="post-meta">
@@ -762,172 +733,16 @@
 
       
         
-          
-            <p>网页布局（layout）是 CSS 的一个重点应用。 <img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071001.gif" alt> 布局的传统解决方案，基于<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/box_model" target="_blank" rel="noopener">盒状模型</a>，依赖 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/display" target="_blank" rel="noopener"><code>display</code></a> 属性 + <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/position" target="_blank" rel="noopener"><code>position</code></a>属性 + <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/float" target="_blank" rel="noopener"><code>float</code></a>属性。它对于那些特殊布局非常不方便，比如，<a href="https://css-tricks.com/centering-css-complete-guide/" target="_blank" rel="noopener">垂直居中</a>就不容易实现。 <img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071002.png" alt> 2009年，W3C 提出了一种新的方案—-Flex 布局，可以简便、完整、响应式地实现各种页面布局。目前，它已经得到了所有浏览器的支持，这意味着，现在就能很安全地使用这项功能。 <img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071003.jpg" alt> Flex 布局将成为未来布局的首选方案。本文介绍它的语法，<a href="http://www.ruanyifeng.com/blog/2015/07/flex-examples.html" target="_blank" rel="noopener">下一篇文章</a>给出常见布局的 Flex 写法。网友 <a href="http://vgee.cn/" target="_blank" rel="noopener">JailBreak</a> 为本文的所有示例制作了 <a href="http://static.vgee.cn/static/index.html" target="_blank" rel="noopener">Demo</a>，也可以参考。 以下内容主要参考了下面两篇文章：<a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/" target="_blank" rel="noopener">A Complete Guide to Flexbox</a> 和 <a href="https://scotch.io/tutorials/a-visual-guide-to-css3-flexbox-properties" target="_blank" rel="noopener">A Visual Guide to CSS3 Flexbox Properties</a>。</p>
-<h2 id="一、Flex-布局是什么？"><a href="#一、Flex-布局是什么？" class="headerlink" title="一、Flex 布局是什么？"></a>一、Flex 布局是什么？</h2><p>Flex 是 Flexible Box 的缩写，意为”弹性布局”，用来为盒状模型提供最大的灵活性。 任何一个容器都可以指定为 Flex 布局。</p>
-<blockquote>
-<pre><code>.box{
-  display: flex;
-}
-</code></pre></blockquote>
-<p>行内元素也可以使用 Flex 布局。</p>
-<blockquote>
-<pre><code>.box{
-  display: inline-flex;
-}
-</code></pre></blockquote>
-<p>Webkit 内核的浏览器，必须加上<code>-webkit</code>前缀。</p>
-<blockquote>
-<pre><code>.box{
-  display: -webkit-flex; /* Safari */
-  display: flex;
-}
-</code></pre></blockquote>
-<p>注意，设为 Flex 布局以后，子元素的<code>float</code>、<code>clear</code>和<code>vertical-align</code>属性将失效。</p>
-<h2 id="二、基本概念"><a href="#二、基本概念" class="headerlink" title="二、基本概念"></a>二、基本概念</h2><p>采用 Flex 布局的元素，称为 Flex 容器（flex container），简称”容器”。它的所有子元素自动成为容器成员，称为 Flex 项目（flex item），简称”项目”。 <img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071004.png" alt> 容器默认存在两根轴：水平的主轴（main axis）和垂直的交叉轴（cross axis）。主轴的开始位置（与边框的交叉点）叫做<code>main start</code>，结束位置叫做<code>main end</code>；交叉轴的开始位置叫做<code>cross start</code>，结束位置叫做<code>cross end</code>。 项目默认沿主轴排列。单个项目占据的主轴空间叫做<code>main size</code>，占据的交叉轴空间叫做<code>cross size</code>。</p>
-<h2 id="三、容器的属性"><a href="#三、容器的属性" class="headerlink" title="三、容器的属性"></a>三、容器的属性</h2><p>以下6个属性设置在容器上。</p>
-<blockquote>
-<ul>
-<li>flex-direction</li>
-<li>flex-wrap</li>
-<li>flex-flow</li>
-<li>justify-content</li>
-<li>align-items</li>
-<li>align-content</li>
-</ul>
-</blockquote>
-<h3 id="3-1-flex-direction属性"><a href="#3-1-flex-direction属性" class="headerlink" title="3.1 flex-direction属性"></a>3.1 flex-direction属性</h3><p><code>flex-direction</code>属性决定主轴的方向（即项目的排列方向）。</p>
-<blockquote>
-<pre><code>.box {
-  flex-direction: row | row-reverse | column | column-reverse;
-}
-</code></pre></blockquote>
-<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071005.png" alt> 它可能有4个值。</p>
-<blockquote>
-<ul>
-<li><code>row</code>（默认值）：主轴为水平方向，起点在左端。</li>
-<li><code>row-reverse</code>：主轴为水平方向，起点在右端。</li>
-<li><code>column</code>：主轴为垂直方向，起点在上沿。</li>
-<li><code>column-reverse</code>：主轴为垂直方向，起点在下沿。</li>
-</ul>
-</blockquote>
-<h3 id="3-2-flex-wrap属性"><a href="#3-2-flex-wrap属性" class="headerlink" title="3.2 flex-wrap属性"></a>3.2 flex-wrap属性</h3><p>默认情况下，项目都排在一条线（又称”轴线”）上。<code>flex-wrap</code>属性定义，如果一条轴线排不下，如何换行。 <img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071006.png" alt></p>
-<blockquote>
-<pre><code>.box{
-  flex-wrap: nowrap | wrap | wrap-reverse;
-}
-</code></pre></blockquote>
-<p>它可能取三个值。 （1）<code>nowrap</code>（默认）：不换行。 <img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071007.png" alt> （2）<code>wrap</code>：换行，第一行在上方。 <img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071008.jpg" alt> （3）<code>wrap-reverse</code>：换行，第一行在下方。 <img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071009.jpg" alt></p>
-<h3 id="3-3-flex-flow"><a href="#3-3-flex-flow" class="headerlink" title="3.3 flex-flow"></a>3.3 flex-flow</h3><p><code>flex-flow</code>属性是<code>flex-direction</code>属性和<code>flex-wrap</code>属性的简写形式，默认值为<code>row nowrap</code>。</p>
-<blockquote>
-<pre><code>.box {
-  flex-flow: &lt;flex-direction&gt; || &lt;flex-wrap&gt;;
-}
-</code></pre></blockquote>
-<h3 id="3-4-justify-content属性"><a href="#3-4-justify-content属性" class="headerlink" title="3.4 justify-content属性"></a>3.4 justify-content属性</h3><p><code>justify-content</code>属性定义了项目在主轴上的对齐方式。</p>
-<blockquote>
-<pre><code>.box {
-  justify-content: flex-start | flex-end | center | space-between | space-around;
-}
-</code></pre></blockquote>
-<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071010.png" alt> 它可能取5个值，具体对齐方式与轴的方向有关。下面假设主轴为从左到右。</p>
-<blockquote>
-<ul>
-<li><code>flex-start</code>（默认值）：左对齐</li>
-<li><code>flex-end</code>：右对齐</li>
-<li><code>center</code>： 居中</li>
-<li><code>space-between</code>：两端对齐，项目之间的间隔都相等。</li>
-<li><code>space-around</code>：每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍。</li>
-</ul>
-</blockquote>
-<h3 id="3-5-align-items属性"><a href="#3-5-align-items属性" class="headerlink" title="3.5 align-items属性"></a>3.5 align-items属性</h3><p><code>align-items</code>属性定义项目在交叉轴上如何对齐。</p>
-<blockquote>
-<pre><code>.box {
-  align-items: flex-start | flex-end | center | baseline | stretch;
-}
-</code></pre></blockquote>
-<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071011.png" alt> 它可能取5个值。具体的对齐方式与交叉轴的方向有关，下面假设交叉轴从上到下。</p>
-<blockquote>
-<ul>
-<li><code>flex-start</code>：交叉轴的起点对齐。</li>
-<li><code>flex-end</code>：交叉轴的终点对齐。</li>
-<li><code>center</code>：交叉轴的中点对齐。</li>
-<li><code>baseline</code>: 项目的第一行文字的基线对齐。</li>
-<li><code>stretch</code>（默认值）：如果项目未设置高度或设为auto，将占满整个容器的高度。</li>
-</ul>
-</blockquote>
-<h3 id="3-6-align-content属性"><a href="#3-6-align-content属性" class="headerlink" title="3.6 align-content属性"></a>3.6 align-content属性</h3><p><code>align-content</code>属性定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。</p>
-<blockquote>
-<pre><code>.box {
-  align-content: flex-start | flex-end | center | space-between | space-around | stretch;
-}
-</code></pre></blockquote>
-<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071012.png" alt> 该属性可能取6个值。</p>
-<blockquote>
-<ul>
-<li><code>flex-start</code>：与交叉轴的起点对齐。</li>
-<li><code>flex-end</code>：与交叉轴的终点对齐。</li>
-<li><code>center</code>：与交叉轴的中点对齐。</li>
-<li><code>space-between</code>：与交叉轴两端对齐，轴线之间的间隔平均分布。</li>
-<li><code>space-around</code>：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。</li>
-<li><code>stretch</code>（默认值）：轴线占满整个交叉轴。</li>
-</ul>
-</blockquote>
-<h3 id="四、项目的属性"><a href="#四、项目的属性" class="headerlink" title="四、项目的属性"></a>四、项目的属性</h3><p>以下6个属性设置在项目上。</p>
-<blockquote>
-<ul>
-<li><code>order</code></li>
-<li><code>flex-grow</code></li>
-<li><code>flex-shrink</code></li>
-<li><code>flex-basis</code></li>
-<li><code>flex</code></li>
-<li><code>align-self</code></li>
-</ul>
-</blockquote>
-<h3 id="4-1-order属性"><a href="#4-1-order属性" class="headerlink" title="4.1 order属性"></a>4.1 order属性</h3><p><code>order</code>属性定义项目的排列顺序。数值越小，排列越靠前，默认为0。</p>
-<blockquote>
-<pre><code>.item {
-  order: &lt;integer&gt;;
-}
-</code></pre></blockquote>
-<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071013.png" alt></p>
-<h3 id="4-2-flex-grow属性"><a href="#4-2-flex-grow属性" class="headerlink" title="4.2 flex-grow属性"></a>4.2 flex-grow属性</h3><p><code>flex-grow</code>属性定义项目的放大比例，默认为<code>0</code>，即如果存在剩余空间，也不放大。</p>
-<blockquote>
-<pre><code>.item {
-  flex-grow: &lt;number&gt;; /* default 0 */
-}
-</code></pre></blockquote>
-<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071014.png" alt> 如果所有项目的<code>flex-grow</code>属性都为1，则它们将等分剩余空间（如果有的话）。如果一个项目的<code>flex-grow</code>属性为2，其他项目都为1，则前者占据的剩余空间将比其他项多一倍。</p>
-<h3 id="4-3-flex-shrink属性"><a href="#4-3-flex-shrink属性" class="headerlink" title="4.3 flex-shrink属性"></a>4.3 flex-shrink属性</h3><p><code>flex-shrink</code>属性定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。</p>
-<blockquote>
-<pre><code>.item {
-  flex-shrink: &lt;number&gt;; /* default 1 */
-}
-</code></pre></blockquote>
-<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071015.jpg" alt> 如果所有项目的<code>flex-shrink</code>属性都为1，当空间不足时，都将等比例缩小。如果一个项目的<code>flex-shrink</code>属性为0，其他项目都为1，则空间不足时，前者不缩小。 负值对该属性无效。</p>
-<h3 id="4-4-flex-basis属性"><a href="#4-4-flex-basis属性" class="headerlink" title="4.4 flex-basis属性"></a>4.4 flex-basis属性</h3><p><code>flex-basis</code>属性定义了在分配多余空间之前，项目占据的主轴空间（main size）。浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为<code>auto</code>，即项目的本来大小。</p>
-<blockquote>
-<pre><code>.item {
-  flex-basis: &lt;length&gt; | auto; /* default auto */
-}
-</code></pre></blockquote>
-<p>它可以设为跟<code>width</code>或<code>height</code>属性一样的值（比如350px），则项目将占据固定空间。</p>
-<h3 id="4-5-flex属性"><a href="#4-5-flex属性" class="headerlink" title="4.5 flex属性"></a>4.5 flex属性</h3><p><code>flex</code>属性是<code>flex-grow</code>, <code>flex-shrink</code> 和 <code>flex-basis</code>的简写，默认值为<code>0 1 auto</code>。后两个属性可选。</p>
-<blockquote>
-<pre><code>.item {
-  flex: none | [ &lt;&apos;flex-grow&apos;&gt; &lt;&apos;flex-shrink&apos;&gt;? || &lt;&apos;flex-basis&apos;&gt; ]
-}
-</code></pre></blockquote>
-<p>该属性有两个快捷值：<code>auto</code> (<code>1 1 auto</code>) 和 none (<code>0 0 auto</code>)。 建议优先使用这个属性，而不是单独写三个分离的属性，因为浏览器会推算相关值。</p>
-<h3 id="4-6-align-self属性"><a href="#4-6-align-self属性" class="headerlink" title="4.6 align-self属性"></a>4.6 align-self属性</h3><p><code>align-self</code>属性允许单个项目有与其他项目不一样的对齐方式，可覆盖<code>align-items</code>属性。默认值为<code>auto</code>，表示继承父元素的<code>align-items</code>属性，如果没有父元素，则等同于<code>stretch</code>。</p>
-<blockquote>
-<pre><code>.item {
-  align-self: auto | flex-start | flex-end | center | baseline | stretch;
-}
-</code></pre></blockquote>
-<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071016.png" alt> 该属性可能取6个值，除了auto，其他都与align-items属性完全一致。   转自:<a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html</a></p>
+          <meta name="referrer" content="no-referrer">
 
-          
+<p>网页布局（layout）是 CSS 的一个重点应用。 <img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071001.gif" alt> 布局的传统解决方案，基于<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/box_model" target="_blank" rel="noopener">盒状模型</a>，依赖 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/display" target="_blank" rel="noopener"><code>display</code></a> 属性 + <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/position" target="_blank" rel="noopener"><code>position</code></a>属性 + <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/float" target="_blank" rel="noopener"><code>float</code></a>属性。它对于那些特殊布局非常不方便，比如，<a href="https://css-tricks.com/centering-css-complete-guide/" target="_blank" rel="noopener">垂直居中</a>就不容易实现。 <img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071002.png" alt> 2009年，W3C 提出了一种新的方案—-Flex 布局，可以简便、完整、响应式地实现各种页面布局。目前，它已经得到了所有浏览器的支持，这意味着，现在就能很安全地使用这项功能。 <img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071003.jpg" alt> Flex 布局将成为未来布局的首选方案。本文介绍它的语法，<a href="http://www.ruanyifeng.com/blog/2015/07/flex-examples.html" target="_blank" rel="noopener">下一篇文章</a>给出常见布局的 Flex 写法。网友 <a href="http://vgee.cn/" target="_blank" rel="noopener">JailBreak</a> 为本文的所有示例制作了 <a href="http://static.vgee.cn/static/index.html" target="_blank" rel="noopener">Demo</a>，也可以参考。 以下内容主要参考了下面两篇文章：<a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/" target="_blank" rel="noopener">A Complete Guide to Flexbox</a> 和 <a href="https://scotch.io/tutorials/a-visual-guide-to-css3-flexbox-properties" target="_blank" rel="noopener">A Visual Guide to CSS3 Flexbox Properties</a>。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/07/02/26.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -974,7 +789,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://cookyg.github.io/2018/06/06/e4-bd-a0-e9-9c-80-e8-a6-81-e4-ba-86-e8-a7-a3-e7-9a-8423-e7-a7-8djavascript-e8-ae-be-e8-ae-a1-e6-a8-a1-e5-bc-8f.html">
+    <link itemprop="mainEntityOfPage" href="https://cookyg.github.io/2018/06/06/06.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hao Pu">
@@ -993,7 +808,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/06/e4-bd-a0-e9-9c-80-e8-a6-81-e4-ba-86-e8-a7-a3-e7-9a-8423-e7-a7-8djavascript-e8-ae-be-e8-ae-a1-e6-a8-a1-e5-bc-8f.html" itemprop="url">你需要了解的23种JavaScript设计模式</a></h1>
+                <a class="post-title-link" href="/2018/06/06/06.html" itemprop="url">你需要了解的23种JavaScript设计模式</a></h1>
         
 
         <div class="post-meta">
@@ -1097,10 +912,16 @@
 
       
         
-          
-            <p>为什么要学习设计模式？ 在许多访谈中，你可能会遇到很多面向对象编程中的接口，抽象类，代理和以及其他与设计模式相关的问题。 一旦了解了设计模式，它会让你轻松应对任何访谈，并可以在你的项目中应用这些特性。在应用程序中实现设计模式已经得到验证和测试。 为了使应用程序具有可扩展性，可靠性和易维护性，应该编写符合设计模式的代码。 什么是设计模式。 设计模式是我们每天编程遇到的问题的可重用解决方案。 设计模式主要是为了解决对象的生成和整合问题。 换句话说，设计模式可以作为可应用于现实世界编程问题的模板。 设计模式的发展历史 设计模式的概念是由四人帮（《设计模式（可复用面向对象软件的基础）》的四位作者）提出。 四人帮把这本书分成两部分： 第一部分解释面向对象编程的优缺点。 第二部分是关于 23 个经典设计模式的演变。 自提出设计模式概念后，四人帮设计模式在软件开发生命周期中发挥了重要作用。 设计模式分类 根据实际应用中遇到的不同问题，四人帮将设计模式分为三种类型。 创建型模式 结构型模式 行为型模式 接下来将概述属于这三种类型的 23 种设计模式的主要概念。 创建型模式 这类模式用于对象的生成和生命周期的管理。 创造模式可以决定生成哪些对象，提高了程序的灵活性。模式如下： 抽象工厂模式 生成器模式 工厂方法模式 单例模式 原型模式 JavaScript抽象工厂模式 抽象工厂模式究竟是什么？ 它就像一个工厂，但一切都被封装起来： 提供对象的方法 构建对象的工厂 最终的对象 最终对象包含使用策略模式的对象 策略模式只是使用组合的方式，换句话说，它的类字段实际上是对象本身。 抽象工厂的用处？ 抽象工厂模式可以创建类簇类的对象，而不需要指定具体的类，这使得抽象工厂很灵活。 通过抽象工厂模式可以对任何类簇对象进行建模并通过统一的接口供外部对象使用。 抽象工厂唯一不好的地方是它可能变得非常复杂。 JavaScript 的生成器模式（Builder模式） Builder 模式是什么？ Builder模式是一种用于创建由其他对象组合构成的对象的模式。创建部件的方法应该独立于主对象。另外，为了从业务方隐藏部件的创建细节，两者是相互独立的。 在使用生成器模式时，生成器知道所有的细节，且创建细节完全对其他相关类屏蔽。 JavaScript 工厂方法模式 什么是工厂方法模式？ 根据定义，只要想一个方法返回公共超类的几个可能的类中的一个，就可以使用工厂模式。 假设我想随机向屏幕上射击敌人。那么如果所有东西都硬编码好了，并且不知道敌人的具体类型会让处理变得很困难。 但是，假设我创建了一个随机数生成器，每个可能的敌人类都由一个数字代替，并可以由该随机数生成器返回。 然后可以将这个数字发送给工厂对象，这样可以返回一个动态创建的敌人。 所以，MOL 的主要概念非常重要，我们希望能够在运行时选择类，这就是工厂模式能够提供的。 何时使用工厂方法模式？ 当不知道需要何种类型的对象时可以使用工厂方法模式。 但是，有一点需要注意，确保所有潜在的类都具有相同的子类层次结构，这意味着在继承路径上有相同的父类。 可以使用工厂模式来集中类别选择的代码。或是不希望用户知道每一个可能的子类时。 JavaScript 单例模式 什么是单例模式？ 当想要避免实例化多个对象时使用单例模式。单例使得只能从类实例化一个对象。 现在你可能会问自己，我什么时候会想要这样做？ 其实，有很多场景。 我们已经演示过拼字游戏里使用一个类容纳所有可能的字母，并且拼字游戏是一款非常常见的棋盘游戏，这里使用单例模式是很明智的选择。 这个单例类包含所有可能的拼字游戏字母，以便玩家可以使用这个单例类取得所有字母，不同玩家可以同时请求获取。 单例使得每个玩家都共享相同的字母列表，每个玩家可以根据这个字母列表来拼接自己的单词。 JavaScript 原型模式 什么是原型模式？ 当想要通过克隆或拷贝对象来生成对象时，这就是原型模式。 通过原型模式可以在运行时添加已知父类的子类实例。 当有许多类只在运行时需要使用时可以使用原型模式。原型模式的好处之一是减少了创建多个子类。 结构型模式 这类模式描述了向现有对象添加功能的不同方式简单地说，这个模式着重于解耦对象的接口实现模式如下： 适配器模式 桥接模式 组合模式 装饰者模式 外观模式 享元模式 代理模式 JavaScript 适配器设计模式 适配器模式的作用 适配器设计模式允许使用两个完全不兼容的接口一起工作，正如其名字一样，适配不同接口。 假设你墙上的插座只有两座插头，但是你想连接一个三座的插头，这时就需要适配器了。 当客户期望使用目标接口是两座插头，但是你只有三座插头，这就是适配器将要执行的操作 把三座转换成两座。 适配器模式允许使用任何现有接口适配为目标接口。 从另一个角度看任何类都可以协同工作只要适配器解决了所有类都必须实现相同接口的问题。 JavaScript 桥接模式 什么是桥接模式？ 官方定义是将抽象与其实现分离开来，因此两者可以独立变化。 该模式用于将抽象与其实现分开，以便两者都可以独立修改。该模式包含一个用于桥接抽象类和实现类的接口。通过桥接模式，两种类型都可以修改而不会相互影响。 桥接模式实现指南 当想要避免抽象与其实现之间的永久绑定时可以使用桥接模式。 抽象和它们的实现都应该可以通过子类进行扩展。当抽象的实现有变化时不应该影响到调用方，及调用方不需要重新编译。 当需要在多个对象之间共享一个实现时，可以选择这种模式。 最后我们希望完全对调用方隐藏抽象的实现。 JavaScript 组合模式 组合模式从定义上看起来很复杂，一旦用起来就会感觉很合理。 它允许统一处理单个对象和对象组合，这是组合设计模式的典型定义。 组合模式可以表示为部分 - 整体的层次结构。该结构的组件又可以划分为更小的组件。 一个更合乎逻辑的定义是组合设计模式是用来结构化数据或单独表示整个对象的每个部分的互相操作。 JavaScript 装饰模式 什么是装饰模式？ 动态的为一个对象附加额外的功能，装饰模式可以不通过继承来实现功能扩展。 这种模式属于结构设计模式类别，也被称为包装模式，装饰设计模式解决了在不改变对象现有结构的情况下添加附加功能的问题。 另外，该模式创建了一个装饰器类，它包装原始类并在运行时向对象添加新的行为或操作。 装饰模式的实现指南 当选择这种模式时，需要动态地向单个对象添加新的功能，并且而不会影响其他对象。 例如，在有些情况下，为原有代码添加新的功能可能会很困难，用修饰器修改代码会更容易些。 通过继承来实现功能扩展会产生大量的子类，并且有可能这些子类还不足以覆盖所有需要扩展的功能。 当无法查看类定义或无法继承时，需要选择装饰模式。 例如，尽管类被封装起来无法修改，通过装饰模式仍然可以进行扩展，并且，我相信你肯定也遇到过无法通过继承来实现功能扩展的情况，在这些情况下，选择装饰模式。 JavaScript 外观模式 什么是外观模式？ 为子系统中的一组接口提供统一接口。外观模式定义了一个更高层次的接口，使子系统更易于使用。术语外观来自法语faade，意思是正面或脸。 简单来说是外观模式隐藏了子系统的实现复杂性，为我们提供了一个简洁的接口。该接口负责调用现有子系统的功能。 外观模式实现指南 当我们想为子系统提供一个简单的接口时需要使用外观模式。随着子系统的发展，子系统往往会变得更加复杂。 当我们在应用一些模式时，大多数模式会导致更多的类创建出来，这使得子系统可用性更好，更容易自定义需要的功能，但对于不太需要自定义的业务方而言，它也变得更加困难。 外观模式将子系统包装成一个简单默认的接口，足以应付大多数情况的使用。 另外，当业务方和子系统的实现存在过多依赖时也可以选择外观模式。 在这种情况下，外观模式将子系统从业务方和其他子系统中分离出来，从而提高子系统的独立性和可移植性。 到目前为止，如果子系统过于耦合，那么可以通过外观模式提供的接口来简化子系统之间的依赖。 JavaScript 享元模式 什么是享元模式？ 当需要创建大量相似对象时需要使用享元模式，这里的大量是上万的量级而不是平时接触的上百。 享元模式通过共享对象的相似部分，避免重复创建，来达到减小内存的使用。 JavaScript 代理模式 什么是代理设计模式？ 代理是一个将被用来限制访问另一个类的类。 这可能是出于安全的考虑，通过代理来决定需要代理的对象哪些方法是可用的。 行为型模式 这类模式描述了对象如何相互作用，模式如下： 责任链模式 命令模式 解释器模式 迭代器模式 中介者模式 备忘录模式 观察者模式 状态模式 策略模式 模板方法模式 访问者模式 JavaScript 责任链模式 什么是责任链模式？ 责任链模式有一组对象，期望它们之间能够解决问题，如果第一个对象无法解决它，则将数据传递给责任链中的下一个数据。 通过多个接收者对象来处理请求，避免将请求的发送者耦合到其接收者。将接收对象串联起来，传递请求直到被其中一个处理掉。 责任链模式为请求创建一系列接收者对象。 在这种模式下，通常每个接收器都包含对另一个接收器的引用。 如果一个接收者不能处理该请求，则它将请求传递给下一个接受者。 JavaScript 命令模式 什么是命令模式？ 命令设计模式是一种行为设计模式，其对象用于表示和封装稍后调用某个方法所需的所有信息。该信息包括方法名称，拥有方法的对象和方法参数的值。 基本上，它允许你做的是存储代码清单，在稍后或多次执行，并且通常使用命令模式可以撤销命令。 当这些封装的对象调用 execute 方法，业务方或程序会执行指定命令或一段代码。 然后，调用者对象在调用时会传递命令给命令接收者，命令接收者拥有实际想要执行的代码，一旦从调用者接收到命令就立马执行。 例如有个”TurnTVOn”的命令对象，然后一个“DeviceButton”的对象，一旦”DeviceButton”对象被调用就会发送”TurnTVOn”命令。所有这些之间的接口可以使用多态，所以无论何时调用 TurnTVOn，该方法将由命令接收者执行。 JavaScript 解释器模式 什么是解释器模式？ 解释器模式很容易被忽略，并且网上很少有使用这种模式。 但是，如果与 JavaScript 反射技术结合使用，会变得非常有用。它用于将数据的一种表示转换为另一种表示。 JavaScript 迭代器模式 什么是迭代器模式？ 迭代器模式提供一种统一的方式来访问不同类型的对象集合。 例如，Array，ArrayList 和 HashTable，这三个集合包含相同类型的对象，通过迭代器可以取到集合里的每一个元素，并做相同的处理。 迭代器模式做的是提供统一的方式来循环遍历这些不同类型的集合。 JavaScript 中介者计模式 什么是中介者模式？ 用于处理相关对象之间的通信。所有通信由中介者完成，通信双方不需要了解对方的任何信息。 更严格的定义是，中介者模式允许通过封装不同对象之间相互作用和相互通信的方式来实现松耦合，并且中介者模式允许每个对象的行为彼此独立地变化。 JavaScript 的备忘录模式 什么是备忘录模式？ 用于存储对象以前状态的模式，首先，备忘录模式需要一个备忘录对象用于存储对象的不同状态，不同的状态及一些字段拥有不同的值。 然后，用于从当前目标备忘录对象读写值的初始对象，创建新的备忘录对象并赋值给当前备忘录对象。 最后，内部是一个 ArrayList 对象用于持有之前所有的备忘录对象，该 ArrayList 对象同时用于存储和检索备忘录对象。 JavaScript 观察者模式 什么时候使用观察者模式？ 当另一个对象更改时需要其他对象接收更新。例如，假设我们有一个对象或发布者代表股票市场中的数千个股票，当需要将更新发送给多个订阅者时，可以使用观察者模式来完成。 观察者模式的好处 松耦合。 对象或发布者完全不用知道观察者或订阅者的存在，我把这分为两种不同的概念，因为我觉得发布 - 订阅更有意义，但 OLP 的基本术语使用的是对象 - 观察者。 坏处 观察者模式唯一的缺点是对象或发布者可能发送对观察者，订阅者无关紧要的更新。 JavaScript 状态模式 什么是状态模式？ 它允许对象在其内部状态改变时改变其行为，这样让对象看起来改变了它所属的类。 状态模式主要分为三个部分： 首先，将拥有所谓的“上下文”或“账户”，它将要做的是维护一个将定义当前状态的 ConcreteState 子类的实例。 然后，拥有“状态”，该状态定义了一个用于封装与上下文特定状态关联的行为接口。 最后是具体的状态，每个子类将实现与上下文状态相关的行为。 JavaScript 策略模式 何时使用策略模式？ 如果要定义一个类，该类将具有与列表中的所有其他行为相似的行为，可以使用策略模式。 例如，有的动物可以飞，有的动物不能飞，这里的相似行为就是飞行，不论该动物是否能飞行。 可以从以下类中选择类对象： 不会飞行 用翅膀飞翔 飞得快 通过策略模式可以动态的创建全新的不同类型的飞行类动物。 当需要动态决定需要使用的行为时可以使用策略模式。 使用策略模式的其他好处 它通常会减少很长的条件列表，所以如果你看到使用许多不同类型的条件时，策略模式会很有帮助。当然，还避免了重复的代码。 策略模式可以防止其他类的变化影响到当前类。也可以向业务方隐藏复杂和敏感代码。 坏处：策略模式会增加对象和类的数量。 JavaScript 模板方法模式 什么是模板方法模式？ 用于创建一组执行类似方法的子类。 要实现它，需要创建一个抽象类，它将包含一个名为模板方法的方法。 创建包含称为模板方法的抽象类，并且模板方法包含每个子类对象将调用的一系列方法调用。在某些情况下子类也会重载一些不合适的方法调用。 JavaScript 访问者模式 什么是访问者模式？ 访问者模式允许将方法添加到不同类型的类中 - 但它们不必是不同的类型 - 只会让复杂度有所增加，并不会对类有太多修改。 这可以根据所使用的类制作完全不同的方法。 也可以说访问者模式可以为现有类创建外部类来进行扩展以避免对原有类做修改。 注意：掌握抽象，继承，多态，封装，接口，类和抽象类等面向对象概念的基本知识对于更好地理解设计模式非常重要。 原文链接：<a href="https://boostlog.io/@sonuton/23-javascript-design-patterns-5adb006847018500491f3f7f" target="_blank" rel="noopener">https://boostlog.io/@sonuton/23-javascript-design-patterns-5adb006847018500491f3f7f</a></p>
+          <meta name="referrer" content="no-referrer">
 
-          
+<p>为什么要学习设计模式？ 在许多访谈中，你可能会遇到很多面向对象编程中的接口，抽象类，代理和以及其他与设计模式相关的问题。 </p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/06/06.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1147,7 +968,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://cookyg.github.io/2018/06/06/transition-e5-b0-b1-e8-bf-99-e4-b9-88-e5-a5-bd-e7-8e-a9.html">
+    <link itemprop="mainEntityOfPage" href="https://cookyg.github.io/2018/06/06/35.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hao Pu">
@@ -1166,7 +987,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/06/transition-e5-b0-b1-e8-bf-99-e4-b9-88-e5-a5-bd-e7-8e-a9.html" itemprop="url">Transition就这么好玩</a></h1>
+                <a class="post-title-link" href="/2018/06/06/35.html" itemprop="url">Transition就这么好玩</a></h1>
         
 
         <div class="post-meta">
@@ -1270,163 +1091,17 @@
 
       
         
-          
-            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>以前说起前端动画必须使用JS，<a href="https://link.juejin.im/?target=https%3A%2F%2Fwww.cnblogs.com%2Ffsjohnhuang%2Fp%2Fmailto%3A%E8%80%8CCSS3%E4%B8%BA%E6%88%91%E4%BB%AC%E5%B8%A6%E6%9D%A5transition%E5%92%8C%40keyframes" target="_blank" rel="noopener">而CSS3为我们带来transition和@keyframes</a>，让我们可以以更简单（声明式代替命令式）和更高效的方式实现UI状态间的补间动画。本文为近期对Transition的学习总结，欢迎各位拍砖。</p>
-<h2 id="属性介绍"><a href="#属性介绍" class="headerlink" title="属性介绍"></a>属性介绍</h2><p>首先先我们简单粗暴了解<code>transition</code>属性吧！</p>
-<pre><code>transition: &lt;transition-property&gt; &lt;transition-duration&gt; &lt;transition-timing-function&gt; &lt;transition-delay&gt;;
+          <meta name="referrer" content="no-referrer">
 
-/* 设置启用Transition效果的CSS属性
- * 注意：仅会引发repaint或reflow的属性可启用Transition效果
- *       [CSS_animated_properties](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animated_properties)
- */
-&lt;transition-property&gt;: all | none | &lt;property&gt; [,&lt;property&gt;]*
-
-/* 设置过渡动画持续时间，单位为s或ms
- */
-&lt;transition-duration&gt;: 0s | &lt;time&gt; [, &lt;time&gt;]*
-
-/* 设置过渡动画的缓动函数
- * cubic-bezier的值从0到1
- * [一个很好用的cubic-bezier配置工具](http://cubic-bezier.com)
- */
-&lt;transition-timing-function&gt;: linear|ease|ease-in|ease-out|ease-in-out|cubic-bezier(n,n,n,n)
-
-/* 设置过渡动画的延时，单位为s或ms
- */
-&lt;transition-delay&gt;: 0s | &lt;time&gt; [, &lt;time&gt;]
-</code></pre><p>另外我们可以一次性为多个CSS属性启动Transition效果</p>
-<pre><code>transition: width 1s ease .6s,
-            color .5s linear,
-            background 2s ease-in-out;
-</code></pre><h2 id="触发方式"><a href="#触发方式" class="headerlink" title="触发方式"></a>触发方式</h2><p>既然Transition是UI状态间的补间动画，那么有且仅有修改UI状态时才能让动画动起来。那么就有3种方式了：</p>
-<ol>
-<li>伪类.<code>:link</code>,<code>:visited</code>,<code>:hover</code>,<code>:active</code>和<code>:focus</code></li>
-<li>通过JS修改CSS属性值</li>
-<li>通过JS修改className值</li>
-</ol>
-<h2 id="TransitionEnd事件详解"><a href="#TransitionEnd事件详解" class="headerlink" title="TransitionEnd事件详解"></a>TransitionEnd事件详解</h2><p><a href="https://link.juejin.im/?target=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FEvents%2Ftransitionend" target="_blank" rel="noopener">TransitionEnd Event</a></p>
-<pre><code>el.addEventListener(&quot;transitionend&quot;
-  , e =&gt; 
-    {
-      const pseudoElement = e.pseudoElement // 触发动画的伪类
-          , propertyName = e.propertyName   // 发生动画的CSS属性
-          , elapsedTime = e.elapsedTime     // 动画的持续时间
-      // ..................
-    })
-</code></pre><p>注意：每个启用TransitionCSS属性的分别对应独立的<code>transitionend</code>事件</p>
-<pre><code>/* 触发3个transitionend事件 */
-transition: width 1s ease .6s,
-            color .5s linear,
-            background 2s ease-in-out;
-</code></pre><h2 id="Visibility也能transition？"><a href="#Visibility也能transition？" class="headerlink" title="Visibility也能transition？"></a>Visibility也能transition？</h2><p>在可启用Transition的CSS属性中，我们发现到一个很特别的CSS属性——<code>visibility</code>。<code>visibility</code>常与<code>display</code>相提并论的属性，它凭什么能启用Transition，而<code>display</code>不行呢？这个我真心不清楚，不过我们还是了解启用transition的<code>visibility</code>先吧！ <code>visibility</code>是离散值，0(<code>hidden</code>)表示隐藏，1(<code>visible</code>)表示完全显示，非0表示显示。那么<code>visibility</code>状态变化就存在两个方向的差异了：</p>
-<ol>
-<li>从<strong>隐藏</strong>到<strong>显示</strong>，由于非0就是显示，那么从值从0到1的过程中，实际上是从隐藏直接切换到显示的状态，因此并没有所谓的变化过程；</li>
-<li>从<strong>显示</strong>到<strong>隐藏</strong>，从1到0的过程中，存在一段时间保持在显示的状态，然后最后一瞬间切换到隐藏，因此效果上是变化延迟，依然没有变化过程。</li>
-</ol>
-<p>上述表明启用transition的<code>visibility</code>并没有补间动画的视觉效果，那么到底有什么作用呢？答案就是不影响/辅助其他CSS属性的补间动画。其中最明显的例子就是辅助<code>opacity</code>属性实现隐藏显示的补间动画。</p>
-<pre><code>&lt;style&gt;
-.form-input{
-    display: inline-flex;
-    line-height: 2;
-    border: solid 1px rgba(0,0,0,0.3);
-}
-.form-input:hover{
-        border: solid 1px rgba(0,0,0,0.4);
-}
-.form-addon{
-    font-style: normal;
-    color: #666;
-    background: #ddd;
-    padding-left: 10px;
-    padding-right: 10px;
-    border-right: solid 1px rgba(0,0,0,0.3);
-}
-.form-addon-after{
-    border-left: solid 1px rgba(0,0,0,0.3);
-    border-right: none 0;
-}
-.form-control{
-    border:none 0;
-    outline-color: transparent;
-    padding: 5px;
-    caret-color: #888;
-    font-size: 16px;
-}
-.tips-host{
-    position: relative;
-}
-.tips{
-    cursor: default;
-    z-index: 999;
-    position: absolute;
-    top: 120%;
-    font-size: 12px;
-    color: #444;
-    background: #ccc;
-    padding: .5em;
-    box-shadow: 2px 2px 10px #999;
-    transition: box-shadow .2s,
-                       opacity 1s,
-                       visibility .8s;
-    visibility: hidden;
-    opacity: 0;
-}
-.tips:hover{
-    box-shadow: 2px 2px 5px #999;
-}
-.tips::before{
-    content: &quot;&quot;;
-    border: solid 10px transparent;
-    border-bottom: solid 10px #ccc;
-    position:  absolute;
-    transform: translate(0, -100%);
-}
-.form-control:focus + .tips{
-    visibility: visible;
-    opacity: 1;
-}
-&lt;/style&gt;
-&lt;div class=&quot;form-input tips-host&quot; &gt;
-    &lt;i class=&quot;form-addon&quot;&gt;Amount&lt;/i&gt;
-    &lt;input class=&quot;form-control&quot;&gt;
-    &lt;div class=&quot;tips&quot;&gt;
-        Starts with alphabet, then anything you would like.
-    &lt;/div&gt;
-&lt;/div&gt;
-</code></pre><p><img src="https://user-gold-cdn.xitu.io/2018/6/6/163d1857d92331ff?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt> 当<code>opacity:0</code>时，需要元素隐藏了但实际上它仍然位于原来的位置，而且可以拦截和响应鼠标事件，当出现元素重叠时则会导致底层元素失效。而由于<code>visibility:hidden</code>时，元素不显示且不拦截鼠标事件，所以在补间动画的最后设置<code>visibility:hidden</code>为不俗的解决办法。</p>
-<h2 id="display-none让transition失效的补救措施"><a href="#display-none让transition失效的补救措施" class="headerlink" title="display:none让transition失效的补救措施"></a><code>display:none</code>让transition失效的补救措施</h2><p>虽然修改<code>display</code>有可能会引发reflow，但它依然不能启用Transition，这点真心要问问委员会了。更让人疑惑的是，它不单不支持启用Transition，而且当设置<code>display:none</code>时其余CSS属性的Transition均失效。难到这是让元素脱离渲染树的后果？？</p>
-<pre><code>&lt;style&gt;
-.box{
-  display: none;
-  background: red;
-  height: 20px;
-}
-&lt;/style&gt;
-&lt;div class=&quot;box&quot;&gt;&lt;/div&gt;
-&lt;button id=&quot;btn1&quot;&gt;Transition has no effect&lt;/button&gt;
-&lt;button id=&quot;btn2&quot;&gt;Transition takes effect&lt;/button&gt;
-&lt;script&gt;
-const box = document.querySelector(&quot;.box&quot;)
-    , btn1 = document.querySelector(&quot;#btn1&quot;)
-    , btn2 = document.querySelector(&quot;#btn2&quot;)
-btn1.addEventListener(&quot;click&quot;, e =&gt; {
-  box.style.display = &quot;block&quot;
-  box.style.background = &quot;blue&quot;
-})
-btn2.addEventListener(&quot;click&quot;, e =&gt; {
-  box.style.display = &quot;block&quot;
-  box.offsetWidth              // 强制执行reflow
-  box.style.background = &quot;blue&quot;
-})
-&lt;/script&gt;
-</code></pre><p>上面的代码，当我们点击btn1时背景色的transition失效，而点击btn2则生效，关键区别就是通过<code>box.offsetWidth</code>强制执行reflow，让元素先加入渲染树进行渲染，然后再修改背景色执行repaint。 那么我们可以得到的补救措施就是——强制执行reflow，下面的操作均可强制执行reflow(注意：会影响性能哦！)</p>
-<pre><code>offsetWidth, offsetHeight, offsetTop, offsetLeft
-scrollWidth, scrollHeight, scrollTop, scrollLeft
-clientWidth, clientHeight, clientTop, clientLeft
-getComputeStyle(), currentStyle()
-</code></pre><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>尊重原创，转载自：<a href="https://www.cnblogs.com/fsjohnhuang/p/9143035.html" target="_blank" rel="noopener">www.cnblogs.com/fsjohnhuang… </a></p>
-
-          
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>以前说起前端动画必须使用JS，<a href="https://link.juejin.im/?target=https%3A%2F%2Fwww.cnblogs.com%2Ffsjohnhuang%2Fp%2Fmailto%3A%E8%80%8CCSS3%E4%B8%BA%E6%88%91%E4%BB%AC%E5%B8%A6%E6%9D%A5transition%E5%92%8C%40keyframes" target="_blank" rel="noopener">而CSS3为我们带来transition和@keyframes</a>，让我们可以以更简单（声明式代替命令式）和更高效的方式实现UI状态间的补间动画。本文为近期对Transition的学习总结，欢迎各位拍砖。</p>
+<h2 id="属性介绍"><a href="#属性介绍" class="headerlink" title="属性介绍"></a>属性介绍</h2>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/06/35.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1473,7 +1148,7 @@ getComputeStyle(), currentStyle()
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://cookyg.github.io/2018/04/10/es5-e9-83-a8-e7-bd-b2object-is.html">
+    <link itemprop="mainEntityOfPage" href="https://cookyg.github.io/2018/04/10/25.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hao Pu">
@@ -1492,7 +1167,7 @@ getComputeStyle(), currentStyle()
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/04/10/es5-e9-83-a8-e7-bd-b2object-is.html" itemprop="url">ES5 部署Object.is</a></h1>
+                <a class="post-title-link" href="/2018/04/10/25.html" itemprop="url">ES5 部署Object.is</a></h1>
         
 
         <div class="post-meta">
@@ -1597,7 +1272,8 @@ getComputeStyle(), currentStyle()
       
         
           
-            <pre><code>Object.defineProperty(Object, &apos;is&apos;, {
+            <p><meta name="referrer" content="no-referrer"></p>
+<pre><code>Object.defineProperty(Object, &apos;is&apos;, {
   value: function(x, y) {
     if (x === y) {
       // 针对+0 不等于 -0的情况
@@ -1658,7 +1334,7 @@ getComputeStyle(), currentStyle()
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://cookyg.github.io/2018/04/08/sort-e6-96-b9-e6-b3-95-e7-9a-84-e7-94-a8-e6-b3-95-ef-bc-8c-e5-8f-82-e6-95-b0-e4-bb-a5-e5-8f-8a-e6-8e-92-e5-ba-8f-e5-8e-9f-e7-90-86.html">
+    <link itemprop="mainEntityOfPage" href="https://cookyg.github.io/2018/04/08/34.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hao Pu">
@@ -1677,7 +1353,7 @@ getComputeStyle(), currentStyle()
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/04/08/sort-e6-96-b9-e6-b3-95-e7-9a-84-e7-94-a8-e6-b3-95-ef-bc-8c-e5-8f-82-e6-95-b0-e4-bb-a5-e5-8f-8a-e6-8e-92-e5-ba-8f-e5-8e-9f-e7-90-86.html" itemprop="url">sort()方法的用法，参数以及排序原理</a></h1>
+                <a class="post-title-link" href="/2018/04/08/34.html" itemprop="url">sort()方法的用法，参数以及排序原理</a></h1>
         
 
         <div class="post-meta">
@@ -1781,116 +1457,16 @@ getComputeStyle(), currentStyle()
 
       
         
-          
-            <p><code>sort()</code> 方法用于对数组的元素进行排序,并返回数组。默认排序顺序是根据字符串<code>Unicode</code>码点。 语法：arrayObject.sort(sortby)；参数sortby可选。规定排序顺序。必须是函数。 注：<strong>如果调用该方法时没有使用参数</strong>，将按字母顺序对数组中的元素进行排序，说得更精确点，是<strong>按照字符编码的顺序进行排序</strong>。要实现这一点，首先应把数组的元素都转换成字符串（如有必要），以便进行比较。 如果想按照其他标准进行排序，就需要提供比较函数，该函数要比较两个值，然后返回一个用于说明这两个值的相对顺序的数字。比较函数应该具有两个参数 a 和 b，其返回值如下： 若 a 小于 b，在排序后的数组中 a 应该出现在 b 之前，则返回一个小于 0 的值。 若 a 等于 b，则返回 0。 若 a 大于 b，则返回一个大于 0 的值。 <strong>例1：我们将创建一个数组，并按字母顺序进行排序：</strong></p>
-<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+          <meta name="referrer" content="no-referrer">
 
-var arr = new Array(6)
-arr[0] = &quot;George&quot;
-arr[1] = &quot;John&quot;
-arr[2] = &quot;Thomas&quot;
-arr[3] = &quot;James&quot;
-arr[4] = &quot;Adrew&quot;
-arr[5] = &quot;Martin&quot;
-
-document.write(arr + &quot;&lt;br /&gt;&quot;)
-document.write(arr.sort())
-
-&lt;/script&gt;
-</code></pre><p>输出：</p>
-<pre><code>George,John,Thomas,James,Adrew,Martin
-Adrew,George,James,John,Martin,Thomas
-</code></pre><p><strong>例2：我们将创建一个数组，并按字母顺序进行排序：</strong></p>
-<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
-
-var arr = new Array(6)
-arr[0] = &quot;10&quot;
-arr[1] = &quot;5&quot;
-arr[2] = &quot;40&quot;
-arr[3] = &quot;25&quot;
-arr[4] = &quot;1000&quot;
-arr[5] = &quot;1&quot;
-
-document.write(arr + &quot;&lt;br /&gt;&quot;)
-document.write(arr.sort())
-
-&lt;/script&gt;
-</code></pre><p>输出：</p>
-<pre><code>10,5,40,25,1000,1
-1,10,1000,25,40,5
-</code></pre><p><strong>请注意，上面的代码没有按照数值的大小对数字进行排序，要实现这一点，就必须使用一个排序函数：</strong></p>
-<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
-
-function sortNumber(a,b)
-{
-return a - b
-}
-
-var arr = new Array(6)
-arr[0] = &quot;10&quot;
-arr[1] = &quot;5&quot;
-arr[2] = &quot;40&quot;
-arr[3] = &quot;25&quot;
-arr[4] = &quot;1000&quot;
-arr[5] = &quot;1&quot;
-
-document.write(arr + &quot;&lt;br /&gt;&quot;)
-document.write(arr.sort(sortNumber))
-
-&lt;/script&gt;
-</code></pre><p>输出：</p>
-<pre><code>10,5,40,25,1000,1
-1,5,10,25,40,1000
-</code></pre><p>这里可以看出，如果安装升序排列，那么方法为：</p>
-<pre><code>function sortNumber(a,b)
-{
-return a - b
-}
-</code></pre><p>如果是按照降序排列则为：</p>
-<pre><code>function sortNumber(a,b)
-{
-return b - a
-}
-</code></pre><p>当然如果想根据数组对象中的某个属性值进行排序呢？ <code>sort</code>方法接收一个函数作为参数，这里嵌套一层函数用来接收对象属性名，其他部分代码与正常使用<code>sort</code>方法相同。</p>
-<pre><code>var arr = [
-    {name:&apos;zopp&apos;,age:0},
-    {name:&apos;gpp&apos;,age:18},
-    {name:&apos;yjj&apos;,age:8}
-];
-
-function compare(property){
-    return function(a,b){
-        var value1 = a[property];
-        var value2 = b[property];
-        return value1 - value2;
-    }
-}
-console.log(arr.sort(compare(&apos;age&apos;)))
-</code></pre><p>如何根据参数不同，来确定是升序排列，还是降序排序呢？</p>
-<pre><code>sortBy: function(attr,rev){
-    //第二个参数没有传递 默认升序排列
-    if(rev ==  undefined){
-        rev = 1;
-    }else{
-        rev = (rev) ? 1 : -1;
-    }
-    return function(a,b){
-        a = a[attr];
-        b = b[attr];
-        if(a &lt; b){
-            return rev * -1;
-        }
-        if(a &gt; b){
-            return rev * 1;
-        }
-        return 0;
-    }
-}
-</code></pre><p>使用方式:</p>
-<pre><code>newArray.sort(sortBy(&apos;number&apos;,false)) 
-</code></pre><p>V8 引擎 sort 函数只给出了两种排序 InsertionSort 和 QuickSort，数量小于10的数组使用 InsertionSort，比10大的数组则使用 QuickSort。   转自<a href="https://segmentfault.com/a/1190000000410506" target="_blank" rel="noopener">https://segmentfault.com/a/1190000000410506</a></p>
-
-          
+<p><code>sort()</code> 方法用于对数组的元素进行排序,并返回数组。默认排序顺序是根据字符串<code>Unicode</code>码点。<br>语法：arrayObject.sort(sortby)；参数sortby可选。规定排序顺序。必须是函数。<br>注：<strong>如果调用该方法时没有使用参数</strong>，将按字母顺序对数组中的元素进行排序，说得更精确点，是<strong>按照字符编码的顺序进行排序</strong>。要实现这一点，首先应把数组的元素都转换成字符串（如有必要），以便进行比较。 如果想按照其他标准进行排序，就需要提供比较函数，该函数要比较两个值，然后返回一个用于说明这两个值的相对顺序的数字。比较函数应该具有两个参数 a 和 b，其返回值如下： 若 a 小于 b，在排序后的数组中 a 应该出现在 b 之前，则返回一个小于 0 的值。 若 a 等于 b，则返回 0。 若 a 大于 b，则返回一个大于 0 的值。 </p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/08/34.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1937,7 +1513,7 @@ console.log(arr.sort(compare(&apos;age&apos;)))
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://cookyg.github.io/2018/03/19/webstorm-mac-e4-b8-8bclear-read-only-status.html">
+    <link itemprop="mainEntityOfPage" href="https://cookyg.github.io/2018/03/19/37.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hao Pu">
@@ -1956,7 +1532,7 @@ console.log(arr.sort(compare(&apos;age&apos;)))
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/19/webstorm-mac-e4-b8-8bclear-read-only-status.html" itemprop="url">webstorm mac下clear read only status</a></h1>
+                <a class="post-title-link" href="/2018/03/19/37.html" itemprop="url">webstorm mac下clear read only status</a></h1>
         
 
         <div class="post-meta">
@@ -2061,7 +1637,9 @@ console.log(arr.sort(compare(&apos;age&apos;)))
       
         
           
-            <p>一条命令即可搞定： sudo chown -R $USER /XXX(这里就写你项目的目录)、 详见：<a href="http://blog.csdn.net/woshifano/article/details/46873173" target="_blank" rel="noopener">http://blog.csdn.net/woshifano/article/details/46873173</a></p>
+            <meta name="referrer" content="no-referrer">
+
+<p>一条命令即可搞定： sudo chown -R $USER /XXX(这里就写你项目的目录)、 详见：<a href="http://blog.csdn.net/woshifano/article/details/46873173" target="_blank" rel="noopener">http://blog.csdn.net/woshifano/article/details/46873173</a></p>
 
           
         
@@ -2110,7 +1688,7 @@ console.log(arr.sort(compare(&apos;age&apos;)))
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://cookyg.github.io/2018/03/12/e5-86-92-e6-b3-a1-e6-8e-92-e5-ba-8f-e5-9f-ba-e6-9c-ac-e6-a6-82-e5-bf-b5.html">
+    <link itemprop="mainEntityOfPage" href="https://cookyg.github.io/2018/03/12/11.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hao Pu">
@@ -2129,7 +1707,7 @@ console.log(arr.sort(compare(&apos;age&apos;)))
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/12/e5-86-92-e6-b3-a1-e6-8e-92-e5-ba-8f-e5-9f-ba-e6-9c-ac-e6-a6-82-e5-bf-b5.html" itemprop="url">冒泡排序基本概念</a></h1>
+                <a class="post-title-link" href="/2018/03/12/11.html" itemprop="url">冒泡排序基本概念</a></h1>
         
 
         <div class="post-meta">
@@ -2233,15 +1811,17 @@ console.log(arr.sort(compare(&apos;age&apos;)))
 
       
         
-          
-            <p><strong>冒泡排序</strong><br>冒泡排序（BubbleSort）的基本概念是：<br>依次比较相邻的两个数，将小数放在前面，大数放在后面。即首先比较第1个和第2个数，将小数放前，大数放后。然后比较第2个数和第3个数，将小数放前，大数放后，如此继续，直至比较最后两个数，将小数放前，大数放后。重复以上过程，仍从第一对数开始比较（因为可能由于第2个数和第3个数的交换，使得第1个数不再大于第2个数），将小数放前，大数放后，一直比较到最小数前的一对相邻数，将小数放前，大数放后，第二趟结束，在倒数第二个数中得到一个新的最小数。如此下去，直至最终完成排序。<br>由于在排序过程中总是小数往前放，大数往后放，相当于气泡往上升，所以称作冒泡排序。</p>
-<p>实现办法：</p>
-<p>用二重循环实现，外循环变量设为i，内循环变量设为j。<br>外循环重复9次，内循环依次重复9，8，…，1次。<br>每次进行比较的两个元素都是与内循环j有关的，它们可以分别用a[j]和a[j+1]标识，<br>i的值依次为1,2,…,9，对于每一个i, j的值依次为1,2,…10-i。</p>
-<blockquote>
-<p>var arr = [3,6,1,23,4,9,0];<br>function run(arr){<br>    for (var i = 0;i &lt; arr.length - 1;i++){<br>        for (var j = i+1;j &lt; arr.length;j++){<br>            if(arr[i] &gt; arr[j]){<br>                var tem = arr[i];<br>                arr[i]=arr[j];<br>                arr[j]=tem;<br>            }<br>        }<br>    }<br>    return arr;<br>}<br>console.log(run(arr))</p>
-</blockquote>
+          <meta name="referrer" content="no-referrer">
 
-          
+<p><strong>冒泡排序</strong><br>冒泡排序（BubbleSort）的基本概念是：<br>依次比较相邻的两个数，将小数放在前面，大数放在后面。即首先比较第1个和第2个数，将小数放前，大数放后。然后比较第2个数和第3个数，将小数放前，大数放后，如此继续，直至比较最后两个数，将小数放前，大数放后。重复以上过程，仍从第一对数开始比较（因为可能由于第2个数和第3个数的交换，使得第1个数不再大于第2个数），将小数放前，大数放后，一直比较到最小数前的一对相邻数，将小数放前，大数放后，第二趟结束，在倒数第二个数中得到一个新的最小数。如此下去，直至最终完成排序。<br>由于在排序过程中总是小数往前放，大数往后放，相当于气泡往上升，所以称作冒泡排序。</p>
+<p>实现办法：</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/12/11.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2288,7 +1868,7 @@ console.log(arr.sort(compare(&apos;age&apos;)))
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://cookyg.github.io/2018/03/09/css-e5-9e-82-e7-9b-b4-e5-b1-85-e4-b8-ad-e7-ae-80-e5-8d-95-e5-86-99-e6-b3-95.html">
+    <link itemprop="mainEntityOfPage" href="https://cookyg.github.io/2018/03/09/02.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hao Pu">
@@ -2307,7 +1887,7 @@ console.log(arr.sort(compare(&apos;age&apos;)))
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/09/css-e5-9e-82-e7-9b-b4-e5-b1-85-e4-b8-ad-e7-ae-80-e5-8d-95-e5-86-99-e6-b3-95.html" itemprop="url">css垂直居中简单写法</a></h1>
+                <a class="post-title-link" href="/2018/03/09/02.html" itemprop="url">css垂直居中简单写法</a></h1>
         
 
         <div class="post-meta">
@@ -2412,180 +1992,9 @@ console.log(arr.sort(compare(&apos;age&apos;)))
       
         
           
-            <p>容器元素设为flex布局，子元素只要写margin:auto</p>
+            <meta name="referrer" content="no-referrer">
 
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://cookyg.github.io/2018/02/23/e5-b0-86form-e8-a1-a8-e5-8d-95-e8-bd-ac-e5-8c-96-e6-88-90javascript-object.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Hao Pu">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="CookyGG的个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/23/e5-b0-86form-e8-a1-a8-e5-8d-95-e8-bd-ac-e5-8c-96-e6-88-90javascript-object.html" itemprop="url">将form表单转化成Javascript object</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-23T13:51:29+08:00">
-                2018-02-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/js/" itemprop="url" rel="index">
-                    <span itemprop="name">js</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>$.fn.serializeObject = function() { var o = {}; var a = this.serializeArray(); $.each(a, function() { if (o[this.name]) { if (!o[this.name].push) { o[this.name] = [ o[this.name] ]; } o[this.name].push(this.value || ‘’); } else { o[this.name] = this.value || ‘’; } }); return o; }</p>
+<p>容器元素设为flex布局，子元素只要写margin:auto</p>
 
           
         
@@ -2625,7 +2034,7 @@ console.log(arr.sort(compare(&apos;age&apos;)))
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2671,7 +2080,7 @@ console.log(arr.sort(compare(&apos;age&apos;)))
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">41</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2789,8 +2198,6 @@ console.log(arr.sort(compare(&apos;age&apos;)))
   
 </div>
 
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
 
 
